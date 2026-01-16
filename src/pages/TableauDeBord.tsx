@@ -4,7 +4,7 @@ import axios from 'axios';
 import StatCard from '../components/Statcard';
 import { useAuthStore } from '../store/authStore';
 
-const API_BASE = 'http://127.0.0.1:8000/api';
+const API_BASE = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api';
 
 interface DashboardStats {
   respiratory_rate: { value: number; unit: string; status: string; color: string };

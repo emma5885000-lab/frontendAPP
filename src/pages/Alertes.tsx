@@ -3,7 +3,7 @@ import axios from "axios";
 import { Bell, Loader2, AlertTriangle } from "lucide-react";
 import { useAuthStore } from "../store/authStore";
 
-const API_BASE = "http://127.0.0.1:8000/api";
+const API_BASE = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000/api";
 
 interface Alert {
   id: number;
