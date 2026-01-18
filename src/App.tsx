@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from 'react-router-dom';
+
+// Composants médecin (web) - existants
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import Accueil from './pages/Accueil';
@@ -9,43 +11,87 @@ import Profil from './pages/Profil';
 import Alertes from './pages/Alertes';
 import Messagerie from './pages/Messagerie';
 import AuthForm from './components/AuthForm';
+
+// Composants patient (mobile PWA)
+import PatientMobileLayout from './apps/patient/layouts/PatientMobileLayout';
+import PatientAccueil from './apps/patient/pages/PatientAccueil';
+import PatientTableau from './apps/patient/pages/PatientTableau';
+import PatientPrediction from './apps/patient/pages/PatientPrediction';
+import PatientProfil from './apps/patient/pages/PatientProfil';
+import PatientAlertes from './apps/patient/pages/PatientAlertes';
+import PatientMessagerie from './apps/patient/pages/PatientMessagerie';
+import PatientAuth from './apps/patient/pages/PatientAuth';
+
 import { useAuthStore } from './store/authStore';
 
+// Layout pour l'espace médecin (web desktop)
+function MedecinWebLayout() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
+  return (
+    <div className="flex h-screen bg-gray-100">
+      <Sidebar isOpen={isSidebarOpen} />
+      <div className="flex-1 flex flex-col overflow-hidden">
+        <Header toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
+        <div className="flex-1 overflow-y-auto p-6">
+          <Outlet />
+        </div>
+      </div>
+    </div>
+  );
+}
 
-
+// Composant de protection des routes
+function ProtectedRoute({ children, redirectTo }: { children: React.ReactNode; redirectTo: string }) {
+  const isAuthenticated = useAuthStore(state => state.isAuthenticated);
+  return isAuthenticated ? <>{children}</> : <Navigate to={redirectTo} replace />;
+}
 
 function App() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const isAuthenticated = useAuthStore(state => state.isAuthenticated); // utilise le store Zustand
+  const isAuthenticated = useAuthStore(state => state.isAuthenticated);
 
   return (
     <Router>
-      <div className="flex h-screen bg-gray-100">
-        {isAuthenticated && <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />}
-        <div className="flex-1 flex flex-col overflow-hidden">
-          {isAuthenticated && <Header toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />}
-          <div className="flex-1 overflow-y-auto p-6">
-            <Routes>
-              {/* Routes publiques */}
-              <Route path="/login" element={<AuthForm />} />
-              <Route path="/register" element={<AuthForm register />} />
+      <Routes>
+        {/* ============ ROUTES PATIENT (Mobile PWA) ============ */}
+        <Route path="/patient/login" element={<PatientAuth />} />
+        <Route path="/patient/register" element={<PatientAuth register />} />
+        
+        {/* Routes patient protégées avec layout mobile */}
+        <Route path="/patient" element={
+          isAuthenticated ? <PatientMobileLayout /> : <Navigate to="/patient/login" replace />
+        }>
+          <Route index element={<PatientAccueil />} />
+          <Route path="tableau" element={<PatientTableau />} />
+          <Route path="prediction" element={<PatientPrediction />} />
+          <Route path="profil" element={<PatientProfil />} />
+          <Route path="alertes" element={<PatientAlertes />} />
+          <Route path="messagerie" element={<PatientMessagerie />} />
+        </Route>
 
-              {/* Routes protégées */}
-              <Route path="/" element={isAuthenticated ? <Accueil /> : <Navigate to="/login" />} />
-              <Route path="/tableau" element={isAuthenticated ? <TableauDeBord /> : <Navigate to="/login" />} />
-              <Route path="/prediction" element={isAuthenticated ? <PredictionIA /> : <Navigate to="/login" />} />
-              <Route path="/profil" element={isAuthenticated ? <Profil /> : <Navigate to="/login" />} />
-              <Route path="/alertes" element={isAuthenticated ? <Alertes /> : <Navigate to="/login" />} />
-              <Route path="/messagerie" element={isAuthenticated ? <Messagerie /> : <Navigate to="/login" />} />
+        {/* ============ ROUTES MÉDECIN (Web Desktop) ============ */}
+        <Route path="/login" element={
+          isAuthenticated ? <Navigate to="/" replace /> : <AuthForm />
+        } />
+        <Route path="/register" element={
+          isAuthenticated ? <Navigate to="/" replace /> : <AuthForm />
+        } />
+        
+        {/* Routes médecin protégées avec layout web */}
+        <Route path="/" element={
+          isAuthenticated ? <MedecinWebLayout /> : <Navigate to="/login" replace />
+        }>
+          <Route index element={<Accueil />} />
+          <Route path="tableau" element={<TableauDeBord />} />
+          <Route path="prediction" element={<PredictionIA />} />
+          <Route path="profil" element={<Profil />} />
+          <Route path="alertes" element={<Alertes />} />
+          <Route path="messagerie" element={<Messagerie />} />
+        </Route>
 
-
-              {/* Redirection par défaut */}
-              <Route path="*" element={<Navigate to="/" />} />
-            </Routes>
-          </div>
-        </div>
-      </div>
+        {/* Redirection par défaut */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
     </Router>
   );
 }

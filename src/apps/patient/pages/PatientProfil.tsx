@@ -1,0 +1,65 @@
+﻿import React from 'react';
+import { User, Mail, Phone, Calendar, Shield, LogOut, ChevronRight, Bell, Lock, HelpCircle } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { useAuthStore } from '../../../store/authStore';
+
+function PatientProfil() {
+  const navigate = useNavigate();
+  const user = useAuthStore(state => state.user);
+  const logout = useAuthStore(state => state.logout);
+  const username = user?.username || 'Patient';
+  const email = user?.email || 'patient@example.com';
+  const initials = username.split(' ').map(n => n[0]).join('').toUpperCase();
+
+  const handleLogout = () => { logout(); navigate('/patient/login'); };
+
+  return (
+    <div className="px-4 py-4">
+      <div className="bg-gradient-to-br from-blue-500 to-blue-700 p-6 rounded-2xl text-white text-center mb-5">
+        <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl font-bold">{initials}</div>
+        <h1 className="text-xl font-bold mb-1">{username}</h1>
+        <p className="text-blue-100 text-sm">{email}</p>
+        <div className="mt-3 inline-flex items-center gap-2 bg-white/20 px-3 py-1.5 rounded-full text-sm">
+          <Shield size={14} /><span>Patient verifie</span>
+        </div>
+      </div>
+      <div className="bg-white rounded-xl shadow-sm p-4 mb-5">
+        <h2 className="text-sm font-semibold text-gray-500 mb-3">INFORMATIONS</h2>
+        <div className="space-y-3">
+          <div className="flex items-center gap-3">
+            <Mail size={18} className="text-blue-600" />
+            <div><div className="text-xs text-gray-400">Email</div><div className="text-sm text-gray-800">{email}</div></div>
+          </div>
+          <div className="flex items-center gap-3">
+            <Phone size={18} className="text-emerald-600" />
+            <div><div className="text-xs text-gray-400">Telephone</div><div className="text-sm text-gray-800">+237 6XX XXX XXX</div></div>
+          </div>
+          <div className="flex items-center gap-3">
+            <Calendar size={18} className="text-purple-600" />
+            <div><div className="text-xs text-gray-400">Membre depuis</div><div className="text-sm text-gray-800">Janvier 2025</div></div>
+          </div>
+        </div>
+      </div>
+      <div className="bg-white rounded-xl shadow-sm overflow-hidden mb-5">
+        <button onClick={() => {}} className="w-full flex items-center gap-3 p-4 border-b border-gray-100">
+          <User size={18} className="text-gray-600" /><span className="flex-1 text-left text-gray-800">Informations personnelles</span><ChevronRight size={18} className="text-gray-400" />
+        </button>
+        <button onClick={() => navigate('/patient/alertes')} className="w-full flex items-center gap-3 p-4 border-b border-gray-100">
+          <Bell size={18} className="text-gray-600" /><span className="flex-1 text-left text-gray-800">Notifications</span><ChevronRight size={18} className="text-gray-400" />
+        </button>
+        <button onClick={() => {}} className="w-full flex items-center gap-3 p-4 border-b border-gray-100">
+          <Lock size={18} className="text-gray-600" /><span className="flex-1 text-left text-gray-800">Securite</span><ChevronRight size={18} className="text-gray-400" />
+        </button>
+        <button onClick={() => {}} className="w-full flex items-center gap-3 p-4">
+          <HelpCircle size={18} className="text-gray-600" /><span className="flex-1 text-left text-gray-800">Aide</span><ChevronRight size={18} className="text-gray-400" />
+        </button>
+      </div>
+      <button onClick={handleLogout} className="w-full flex items-center justify-center gap-2 p-4 bg-red-50 text-red-600 rounded-xl font-semibold">
+        <LogOut size={20} /><span>Se deconnecter</span>
+      </button>
+      <div className="text-center mt-6 text-xs text-gray-400">HEALTH TIC v1.0.0</div>
+    </div>
+  );
+}
+
+export default PatientProfil;
