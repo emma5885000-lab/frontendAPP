@@ -50,9 +50,13 @@ const AuthForm: React.FC = () => {
         role: data.user.role
       });
       
-      // Redirection vers Accueil
-      console.log("Connexion réussie, redirection...");
-      navigate("/");
+      // Redirection selon le rôle
+      console.log("Connexion réussie, redirection selon le rôle:", data.user.role);
+      if (data.user.role === 'patient') {
+        navigate("/patient");
+      } else {
+        navigate("/");
+      }
     } catch (err) {
       const error = err as AxiosError;
       console.error("Erreur complète:", error);

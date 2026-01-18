@@ -47,15 +47,28 @@ function ProtectedRoute({ children, redirectTo }: { children: React.ReactNode; r
   return isAuthenticated ? <>{children}</> : <Navigate to={redirectTo} replace />;
 }
 
+// Composant pour rediriger selon le rôle après connexion
+function RoleBasedRedirect() {
+  const user = useAuthStore(state => state.user);
+  const isPatient = user?.role === 'patient';
+  return <Navigate to={isPatient ? "/patient" : "/"} replace />;
+}
+
 function App() {
   const isAuthenticated = useAuthStore(state => state.isAuthenticated);
+  const user = useAuthStore(state => state.user);
+  const isPatient = user?.role === 'patient';
 
   return (
     <Router>
       <Routes>
         {/* ============ ROUTES PATIENT (Mobile PWA) ============ */}
-        <Route path="/patient/login" element={<PatientAuth />} />
-        <Route path="/patient/register" element={<PatientAuth register />} />
+        <Route path="/patient/login" element={
+          isAuthenticated ? <Navigate to="/patient" replace /> : <PatientAuth />
+        } />
+        <Route path="/patient/register" element={
+          isAuthenticated ? <Navigate to="/patient" replace /> : <PatientAuth register />
+        } />
         
         {/* Routes patient protégées avec layout mobile */}
         <Route path="/patient" element={
@@ -71,15 +84,16 @@ function App() {
 
         {/* ============ ROUTES MÉDECIN (Web Desktop) ============ */}
         <Route path="/login" element={
-          isAuthenticated ? <Navigate to="/" replace /> : <AuthForm />
+          isAuthenticated ? (isPatient ? <Navigate to="/patient" replace /> : <Navigate to="/" replace />) : <AuthForm />
         } />
         <Route path="/register" element={
-          isAuthenticated ? <Navigate to="/" replace /> : <AuthForm />
+          isAuthenticated ? (isPatient ? <Navigate to="/patient" replace /> : <Navigate to="/" replace />) : <AuthForm />
         } />
         
         {/* Routes médecin protégées avec layout web */}
         <Route path="/" element={
-          isAuthenticated ? <MedecinWebLayout /> : <Navigate to="/login" replace />
+          !isAuthenticated ? <Navigate to="/login" replace /> : 
+          isPatient ? <Navigate to="/patient" replace /> : <MedecinWebLayout />
         }>
           <Route index element={<Accueil />} />
           <Route path="tableau" element={<TableauDeBord />} />
@@ -89,8 +103,10 @@ function App() {
           <Route path="messagerie" element={<Messagerie />} />
         </Route>
 
-        {/* Redirection par défaut */}
-        <Route path="*" element={<Navigate to="/" replace />} />
+        {/* Redirection par défaut selon le rôle */}
+        <Route path="*" element={
+          isAuthenticated ? (isPatient ? <Navigate to="/patient" replace /> : <Navigate to="/" replace />) : <Navigate to="/login" replace />
+        } />
       </Routes>
     </Router>
   );
