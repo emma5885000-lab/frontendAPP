@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bell, User } from 'lucide-react';
+import { FaBell } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../../../store/authStore';
 
@@ -34,7 +34,7 @@ function MobileHeader() {
             onClick={() => navigate('/patient/alertes')}
             className="relative p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
           >
-            <Bell size={20} />
+            <FaBell size={20} />
             <span className="absolute top-1 right-1 w-2 h-2 bg-emerald-500 rounded-full border border-white"></span>
           </button>
           

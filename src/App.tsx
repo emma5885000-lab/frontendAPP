@@ -20,6 +20,7 @@ import PatientPrediction from './apps/patient/pages/PatientPrediction';
 import PatientProfil from './apps/patient/pages/PatientProfil';
 import PatientAlertes from './apps/patient/pages/PatientAlertes';
 import PatientMessagerie from './apps/patient/pages/PatientMessagerie';
+import PatientDevices from './apps/patient/pages/PatientDevices';
 import PatientAuth from './apps/patient/pages/PatientAuth';
 
 import { useAuthStore } from './store/authStore';
@@ -80,6 +81,7 @@ function App() {
           <Route path="profil" element={<PatientProfil />} />
           <Route path="alertes" element={<PatientAlertes />} />
           <Route path="messagerie" element={<PatientMessagerie />} />
+          <Route path="devices" element={<PatientDevices />} />
         </Route>
 
         {/* ============ ROUTES MÉDECIN (Web Desktop) ============ */}

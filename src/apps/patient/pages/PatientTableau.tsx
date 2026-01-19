@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Activity, Wind, Droplets, Sun, Loader2, AlertTriangle, TrendingUp, TrendingDown } from 'lucide-react';
+import { FaHeartbeat, FaWind, FaTint, FaSun } from 'react-icons/fa';
+import { AiOutlineLoading3Quarters, AiOutlineWarning } from 'react-icons/ai';
 import axios from 'axios';
 import { useAuthStore } from '../../../store/authStore';
 
@@ -52,7 +53,7 @@ function PatientTableau() {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center h-64">
-        <Loader2 className="w-8 h-8 animate-spin text-sky-500 mb-3" />
+        <AiOutlineLoading3Quarters className="w-8 h-8 animate-spin text-sky-500 mb-3" />
         <span className="text-gray-500 text-sm">Chargement...</span>
       </div>
     );
@@ -62,7 +63,7 @@ function PatientTableau() {
     return (
       <div className="mx-4 my-4 p-4 bg-red-50 border border-red-200 rounded-xl">
         <div className="flex items-center gap-3 text-red-700">
-          <AlertTriangle size={20} />
+          <AiOutlineWarning size={20} />
           <span className="text-sm">{error || "Aucune donnée"}</span>
         </div>
       </div>
@@ -71,7 +72,7 @@ function PatientTableau() {
 
   const stats = [
     { 
-      icon: Activity, 
+      icon: FaHeartbeat, 
       label: 'Fréq. respiratoire', 
       value: data.stats.respiratory_rate.value,
       unit: data.stats.respiratory_rate.unit,
@@ -81,7 +82,7 @@ function PatientTableau() {
       iconColor: 'text-emerald-600'
     },
     { 
-      icon: Wind, 
+      icon: FaWind, 
       label: 'Fréq. cardiaque', 
       value: data.stats.heart_rate.value,
       unit: data.stats.heart_rate.unit,
@@ -91,7 +92,7 @@ function PatientTableau() {
       iconColor: 'text-sky-600'
     },
     { 
-      icon: Droplets, 
+      icon: FaTint, 
       label: 'SpO2', 
       value: data.stats.spo2.value,
       unit: data.stats.spo2.unit,
@@ -101,7 +102,7 @@ function PatientTableau() {
       iconColor: 'text-emerald-600'
     },
     { 
-      icon: Sun, 
+      icon: FaSun, 
       label: 'Qualité air', 
       value: data.stats.air_quality.value,
       unit: data.stats.air_quality.unit,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Activity, Wind, Droplets, Brain, BarChart3, MessageSquare, Bell, ChevronRight } from 'lucide-react';
+import { FaHeartbeat, FaWind, FaTint, FaBrain, FaChartBar, FaComments, FaBell, FaChevronRight } from 'react-icons/fa';
 import { useAuthStore } from '../../../store/authStore';
 
 function PatientAccueil() {
@@ -17,7 +17,7 @@ function PatientAccueil() {
           onClick={() => navigate('/patient/prediction')}
           className="bg-white text-sky-600 px-4 py-2.5 rounded-xl font-semibold text-sm flex items-center gap-2"
         >
-          <Brain size={18} />
+          <FaBrain size={18} />
           Analyse IA
         </button>
       </div>
@@ -26,7 +26,7 @@ function PatientAccueil() {
       <div className="grid grid-cols-2 gap-3 mb-5">
         <div className="bg-white p-4 rounded-xl shadow-sm">
           <div className="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center mb-2">
-            <Activity size={18} className="text-emerald-600" />
+            <FaHeartbeat size={18} className="text-emerald-600" />
           </div>
           <div className="text-2xl font-bold text-gray-800">16</div>
           <div className="text-xs text-gray-500">Fréq. respiratoire</div>
@@ -35,7 +35,7 @@ function PatientAccueil() {
 
         <div className="bg-white p-4 rounded-xl shadow-sm">
           <div className="w-8 h-8 bg-sky-100 rounded-lg flex items-center justify-center mb-2">
-            <Wind size={18} className="text-sky-600" />
+            <FaWind size={18} className="text-sky-600" />
           </div>
           <div className="text-2xl font-bold text-gray-800">72</div>
           <div className="text-xs text-gray-500">Fréq. cardiaque</div>
@@ -44,7 +44,7 @@ function PatientAccueil() {
 
         <div className="bg-white p-4 rounded-xl shadow-sm">
           <div className="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center mb-2">
-            <Droplets size={18} className="text-emerald-600" />
+            <FaTint size={18} className="text-emerald-600" />
           </div>
           <div className="text-2xl font-bold text-gray-800">98%</div>
           <div className="text-xs text-gray-500">SpO2</div>
@@ -53,7 +53,7 @@ function PatientAccueil() {
 
         <div className="bg-white p-4 rounded-xl shadow-sm">
           <div className="w-8 h-8 bg-sky-100 rounded-lg flex items-center justify-center mb-2">
-            <Bell size={18} className="text-sky-600" />
+            <FaBell size={18} className="text-sky-600" />
           </div>
           <div className="text-2xl font-bold text-gray-800">2</div>
           <div className="text-xs text-gray-500">Alertes</div>
@@ -68,13 +68,13 @@ function PatientAccueil() {
           className="w-full flex items-center gap-4 p-4 bg-sky-50 rounded-xl active:bg-sky-100 transition-colors"
         >
           <div className="w-12 h-12 bg-sky-500 rounded-xl flex items-center justify-center">
-            <Brain size={24} className="text-white" />
+            <FaBrain size={24} className="text-white" />
           </div>
           <div className="flex-1 text-left">
             <div className="font-semibold text-gray-800">Analyse IA</div>
             <div className="text-sm text-gray-500">Prédiction des risques</div>
           </div>
-          <ChevronRight size={20} className="text-gray-400" />
+          <FaChevronRight size={20} className="text-gray-400" />
         </button>
 
         <button 
@@ -82,13 +82,13 @@ function PatientAccueil() {
           className="w-full flex items-center gap-4 p-4 bg-emerald-50 rounded-xl active:bg-emerald-100 transition-colors"
         >
           <div className="w-12 h-12 bg-emerald-500 rounded-xl flex items-center justify-center">
-            <BarChart3 size={24} className="text-white" />
+            <FaChartBar size={24} className="text-white" />
           </div>
           <div className="flex-1 text-left">
             <div className="font-semibold text-gray-800">Mes données</div>
             <div className="text-sm text-gray-500">Historique complet</div>
           </div>
-          <ChevronRight size={20} className="text-gray-400" />
+          <FaChevronRight size={20} className="text-gray-400" />
         </button>
 
         <button 
@@ -96,13 +96,13 @@ function PatientAccueil() {
           className="w-full flex items-center gap-4 p-4 bg-sky-50 rounded-xl active:bg-sky-100 transition-colors"
         >
           <div className="w-12 h-12 bg-sky-500 rounded-xl flex items-center justify-center">
-            <MessageSquare size={24} className="text-white" />
+            <FaComments size={24} className="text-white" />
           </div>
           <div className="flex-1 text-left">
             <div className="font-semibold text-gray-800">Messagerie</div>
             <div className="text-sm text-gray-500">Contacter mon médecin</div>
           </div>
-          <ChevronRight size={20} className="text-gray-400" />
+          <FaChevronRight size={20} className="text-gray-400" />
         </button>
       </div>
 

@@ -1,19 +1,20 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Home, BarChart3, Brain, MessageSquare, User, LucideIcon } from 'lucide-react';
+import { FaHome, FaChartBar, FaBrain, FaComments, FaUser } from 'react-icons/fa';
+import { IconType } from 'react-icons';
 
 interface NavItem {
   path: string;
-  icon: LucideIcon;
+  icon: IconType;
   label: string;
 }
 
 const navItems: NavItem[] = [
-  { path: '/patient', icon: Home, label: 'Accueil' },
-  { path: '/patient/tableau', icon: BarChart3, label: 'Données' },
-  { path: '/patient/prediction', icon: Brain, label: 'IA' },
-  { path: '/patient/messagerie', icon: MessageSquare, label: 'Messages' },
-  { path: '/patient/profil', icon: User, label: 'Profil' },
+  { path: '/patient', icon: FaHome, label: 'Accueil' },
+  { path: '/patient/tableau', icon: FaChartBar, label: 'Données' },
+  { path: '/patient/prediction', icon: FaBrain, label: 'IA' },
+  { path: '/patient/messagerie', icon: FaComments, label: 'Messages' },
+  { path: '/patient/profil', icon: FaUser, label: 'Profil' },
 ];
 
 function MobileNavbar() {
@@ -38,7 +39,7 @@ function MobileNavbar() {
               {({ isActive }) => (
                 <>
                   <div className={`p-2 rounded-xl transition-all ${isActive ? 'bg-sky-100' : ''}`}>
-                    <Icon size={22} strokeWidth={isActive ? 2.5 : 2} />
+                    <Icon size={22} />
                   </div>
                   <span className={`text-xs mt-1 ${isActive ? 'font-semibold' : 'font-medium'}`}>
                     {item.label}

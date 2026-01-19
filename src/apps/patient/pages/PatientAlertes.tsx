@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Bell, AlertTriangle, CheckCircle, Info, Clock, Filter } from 'lucide-react';
+import { FaBell, FaCheckCircle, FaInfoCircle, FaClock, FaFilter } from 'react-icons/fa';
+import { AiOutlineWarning } from 'react-icons/ai';
 
 interface Alerte {
   id: number;
@@ -63,9 +64,9 @@ function PatientAlertes() {
 
   const getAlertIcon = (type: string) => {
     switch(type) {
-      case 'warning': return <AlertTriangle size={20} className="text-sky-500" />;
-      case 'success': return <CheckCircle size={20} className="text-emerald-500" />;
-      default: return <Info size={20} className="text-sky-500" />;
+      case 'warning': return <AiOutlineWarning size={20} className="text-sky-500" />;
+      case 'success': return <FaCheckCircle size={20} className="text-emerald-500" />;
+      default: return <FaInfoCircle size={20} className="text-sky-500" />;
     }
   };
 
@@ -94,7 +95,7 @@ function PatientAlertes() {
                 : 'bg-gray-100 text-gray-600'
             }`}
           >
-            <Filter size={16} />
+            <FaFilter size={16} />
             {filter === 'unread' ? 'Non lues' : 'Toutes'}
           </button>
         </div>
@@ -124,7 +125,7 @@ function PatientAlertes() {
                   </div>
                   <p className="text-sm text-gray-600 mb-2">{alerte.message}</p>
                   <div className="flex items-center gap-1 text-xs text-gray-400">
-                    <Clock size={12} />
+                    <FaClock size={12} />
                     <span>{alerte.time}</span>
                   </div>
                 </div>
@@ -135,7 +136,7 @@ function PatientAlertes() {
       ) : (
         <div className="text-center py-12">
           <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Bell size={28} className="text-gray-400" />
+            <FaBell size={28} className="text-gray-400" />
           </div>
           <p className="text-gray-500">Aucune alerte</p>
         </div>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Eye, EyeOff, Mail, Lock, User, Loader2 } from 'lucide-react';
+import { FaEye, FaEyeSlash, FaEnvelope, FaLock, FaUser } from 'react-icons/fa';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import axios from 'axios';
 import { useAuthStore } from '../../../store/authStore';
 
@@ -121,7 +122,7 @@ function PatientAuth({ register = false }: PatientAuthProps) {
               Nom d'utilisateur
             </label>
             <div className="relative">
-              <User size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
+              <FaUser size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
               <input
                 type="text"
                 name="username"
@@ -141,7 +142,7 @@ function PatientAuth({ register = false }: PatientAuthProps) {
                 Email
               </label>
               <div className="relative">
-                <Mail size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
+                <FaEnvelope size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
                 <input
                   type="email"
                   name="email"
@@ -161,7 +162,7 @@ function PatientAuth({ register = false }: PatientAuthProps) {
               Mot de passe
             </label>
             <div className="relative">
-              <Lock size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
+              <FaLock size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
               <input
                 type={showPassword ? 'text' : 'password'}
                 name="password"
@@ -176,7 +177,7 @@ function PatientAuth({ register = false }: PatientAuthProps) {
                 onClick={() => setShowPassword(!showPassword)}
                 className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"
               >
-                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                {showPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
               </button>
             </div>
           </div>
@@ -188,7 +189,7 @@ function PatientAuth({ register = false }: PatientAuthProps) {
                 Confirmer le mot de passe
               </label>
               <div className="relative">
-                <Lock size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
+                <FaLock size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
                 <input
                   type={showPassword ? 'text' : 'password'}
                   name="confirmPassword"
@@ -210,7 +211,7 @@ function PatientAuth({ register = false }: PatientAuthProps) {
           >
             {loading ? (
               <>
-                <Loader2 size={20} className="animate-spin" />
+                <AiOutlineLoading3Quarters size={20} className="animate-spin" />
                 <span>Chargement...</span>
               </>
             ) : (

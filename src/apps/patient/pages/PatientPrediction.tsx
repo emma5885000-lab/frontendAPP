@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Brain, AlertTriangle, Loader2, Shield, Heart, Wind, Lightbulb } from 'lucide-react';
+import { FaBrain, FaShieldAlt, FaHeart, FaWind, FaLightbulb } from 'react-icons/fa';
+import { AiOutlineLoading3Quarters, AiOutlineWarning } from 'react-icons/ai';
 import axios from 'axios';
 import { useAuthStore } from '../../../store/authStore';
 
@@ -61,7 +62,7 @@ function PatientPrediction() {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center h-64">
-        <Loader2 className="w-10 h-10 text-sky-500 animate-spin mb-3" />
+        <AiOutlineLoading3Quarters className="w-10 h-10 text-sky-500 animate-spin mb-3" />
         <p className="text-gray-500 text-sm">Analyse en cours...</p>
       </div>
     );
@@ -71,7 +72,7 @@ function PatientPrediction() {
     return (
       <div className="mx-4 my-4 p-4 bg-red-50 border border-red-200 rounded-xl">
         <div className="flex items-center gap-3 text-red-700">
-          <AlertTriangle size={20} />
+          <AiOutlineWarning size={20} />
           <span className="text-sm">{error}</span>
         </div>
       </div>
@@ -93,7 +94,7 @@ function PatientPrediction() {
       {/* Header */}
       <div className="flex items-center gap-3 mb-5">
         <div className="w-12 h-12 bg-gradient-to-br from-sky-100 to-sky-200 rounded-xl flex items-center justify-center">
-          <Brain size={24} className="text-sky-600" />
+          <FaBrain size={24} className="text-sky-600" />
         </div>
         <div>
           <h1 className="text-xl font-bold text-gray-800">Analyse IA</h1>
@@ -115,17 +116,17 @@ function PatientPrediction() {
       {/* Scores */}
       <div className="grid grid-cols-3 gap-3 mb-5">
         <div className="bg-white p-3 rounded-xl shadow-sm text-center">
-          <Shield size={20} className="text-emerald-500 mx-auto mb-1" />
+          <FaShieldAlt size={20} className="text-emerald-500 mx-auto mb-1" />
           <div className="text-xl font-bold text-gray-800">{predictionData.health_score}/10</div>
           <div className="text-xs text-gray-500">Score santé</div>
         </div>
         <div className="bg-white p-3 rounded-xl shadow-sm text-center">
-          <Heart size={20} className="text-sky-500 mx-auto mb-1" />
+          <FaHeart size={20} className="text-sky-500 mx-auto mb-1" />
           <div className="text-xl font-bold text-gray-800">{predictionData.relative_risk}%</div>
           <div className="text-xs text-gray-500">Risque relatif</div>
         </div>
         <div className="bg-white p-3 rounded-xl shadow-sm text-center">
-          <Wind size={20} className="text-emerald-500 mx-auto mb-1" />
+          <FaWind size={20} className="text-emerald-500 mx-auto mb-1" />
           <div className="text-xl font-bold text-gray-800">{predictionData.confidence}%</div>
           <div className="text-xs text-gray-500">Confiance</div>
         </div>
@@ -138,7 +139,7 @@ function PatientPrediction() {
           <div className="space-y-2 mb-5">
             {predictionData.risk_factors.map((factor, index) => (
               <div key={index} className="flex items-start gap-3 p-3 bg-sky-50 rounded-xl border border-sky-100">
-                <AlertTriangle size={18} className="text-sky-500 flex-shrink-0 mt-0.5" />
+                <AiOutlineWarning size={18} className="text-sky-500 flex-shrink-0 mt-0.5" />
                 <span className="text-sm text-sky-800">{factor}</span>
               </div>
             ))}
@@ -163,7 +164,7 @@ function PatientPrediction() {
           ))
         ) : (
           <div className="bg-emerald-50 p-4 rounded-xl flex items-center gap-3">
-            <Lightbulb size={20} className="text-emerald-600" />
+            <FaLightbulb size={20} className="text-emerald-600" />
             <span className="text-sm text-emerald-700">
               Continuez vos bonnes habitudes de santé !
             </span>

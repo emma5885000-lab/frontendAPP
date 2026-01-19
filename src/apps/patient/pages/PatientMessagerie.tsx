@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Send, ArrowLeft, Phone, Video, MoreVertical } from 'lucide-react';
+import { FaPaperPlane, FaArrowLeft, FaPhone, FaVideo } from 'react-icons/fa';
 
 interface Message {
   id: number;
@@ -77,7 +77,7 @@ function PatientMessagerie() {
             onClick={() => setSelectedConv(null)}
             className="p-2 -ml-2 rounded-lg hover:bg-gray-100"
           >
-            <ArrowLeft size={20} />
+            <FaArrowLeft size={20} />
           </button>
           <div className="w-10 h-10 bg-gradient-to-br from-sky-400 to-sky-600 rounded-full flex items-center justify-center text-white font-semibold">
             {selectedConv.avatar}
@@ -87,10 +87,10 @@ function PatientMessagerie() {
             <div className="text-xs text-gray-500">{selectedConv.role}</div>
           </div>
           <button className="p-2 rounded-lg hover:bg-gray-100">
-            <Phone size={20} className="text-gray-600" />
+            <FaPhone size={20} className="text-gray-600" />
           </button>
           <button className="p-2 rounded-lg hover:bg-gray-100">
-            <Video size={20} className="text-gray-600" />
+            <FaVideo size={20} className="text-gray-600" />
           </button>
         </div>
 
@@ -134,7 +134,7 @@ function PatientMessagerie() {
               onClick={sendMessage}
               className="w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center text-white active:bg-emerald-600"
             >
-              <Send size={20} />
+              <FaPaperPlane size={20} />
             </button>
           </div>
         </div>
