@@ -54,7 +54,7 @@ function PatientAuth({ register = false }: PatientAuthProps) {
         
         // Auto-login après inscription
         const loginRes = await axios.post(`${API_BASE}/users/login/`, {
-          username: formData.username,
+          email: formData.email,
           password: formData.password
         });
         
@@ -67,7 +67,7 @@ function PatientAuth({ register = false }: PatientAuthProps) {
         navigate('/patient');
       } else {
         const response = await axios.post(`${API_BASE}/users/login/`, {
-          username: formData.username,
+          email: formData.email,
           password: formData.password
         });
         
@@ -116,45 +116,45 @@ function PatientAuth({ register = false }: PatientAuthProps) {
         )}
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Username */}
-          <div>
-            <label className="text-sm font-medium text-gray-700 mb-1 block">
-              Nom d'utilisateur
-            </label>
-            <div className="relative">
-              <FaUser size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
-              <input
-                type="text"
-                name="username"
-                value={formData.username}
-                onChange={handleChange}
-                placeholder="Votre nom d'utilisateur"
-                className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
-                required
-              />
-            </div>
-          </div>
-
-          {/* Email (inscription uniquement) */}
+          {/* Username (inscription uniquement) */}
           {isRegister && (
             <div>
               <label className="text-sm font-medium text-gray-700 mb-1 block">
-                Email
+                Nom d'utilisateur
               </label>
               <div className="relative">
-                <FaEnvelope size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
+                <FaUser size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
                 <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
+                  type="text"
+                  name="username"
+                  value={formData.username}
                   onChange={handleChange}
-                  placeholder="votre@email.com"
+                  placeholder="Votre nom d'utilisateur"
                   className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
                   required
                 />
               </div>
             </div>
           )}
+
+          {/* Email */}
+          <div>
+            <label className="text-sm font-medium text-gray-700 mb-1 block">
+              Email
+            </label>
+            <div className="relative">
+              <FaEnvelope size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="votre@email.com"
+                className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
+                required
+              />
+            </div>
+          </div>
 
           {/* Password */}
           <div>
