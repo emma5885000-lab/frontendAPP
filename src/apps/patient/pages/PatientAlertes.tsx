@@ -64,17 +64,17 @@ function PatientAlertes() {
 
   const getAlertIcon = (type: string) => {
     switch(type) {
-      case 'warning': return <AiOutlineWarning size={20} className="text-blue-600" />;
+      case 'warning': return <AiOutlineWarning size={20} className="text-sky-500" />;
       case 'success': return <FaCheckCircle size={20} className="text-emerald-500" />;
-      default: return <FaInfoCircle size={20} className="text-blue-600" />;
+      default: return <FaInfoCircle size={20} className="text-sky-500" />;
     }
   };
 
   const getAlertStyle = (type: string) => {
     switch(type) {
-      case 'warning': return 'border-l-blue-600 bg-blue-50';
+      case 'warning': return 'border-l-sky-500 bg-sky-50';
       case 'success': return 'border-l-emerald-500 bg-emerald-50';
-      default: return 'border-l-blue-600 bg-blue-50';
+      default: return 'border-l-sky-500 bg-sky-50';
     }
   };
 

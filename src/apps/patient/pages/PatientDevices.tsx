@@ -163,7 +163,7 @@ function PatientDevices() {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center h-64">
-        <AiOutlineLoading3Quarters className="w-8 h-8 animate-spin text-blue-600 mb-3" />
+        <AiOutlineLoading3Quarters className="w-8 h-8 animate-spin text-sky-500 mb-3" />
         <span className="text-gray-500 text-sm">Chargement...</span>
       </div>
     );
@@ -235,14 +235,14 @@ function PatientDevices() {
                   </code>
                   <button
                     onClick={() => copyToClipboard(device.device_key, device.id)}
-                    className="p-2 bg-blue-100 text-blue-700 rounded-lg active:bg-blue-200"
+                    className="p-2 bg-sky-100 text-sky-600 rounded-lg active:bg-sky-200"
                     title="Copier la clé"
                   >
                     {copiedKey === device.id ? <FaCheck size={16} /> : <FaCopy size={16} />}
                   </button>
                   <button
                     onClick={() => handleRegenerateKey(device)}
-                    className="p-2 bg-blue-100 text-blue-700 rounded-lg active:bg-blue-200"
+                    className="p-2 bg-sky-100 text-sky-600 rounded-lg active:bg-sky-200"
                     title="Régénérer la clé"
                   >
                     <FaSync size={16} />
@@ -264,7 +264,7 @@ function PatientDevices() {
                 </button>
                 <button
                   onClick={() => openEditModal(device)}
-                  className="p-2 bg-blue-100 text-blue-700 rounded-lg"
+                  className="p-2 bg-sky-100 text-sky-600 rounded-lg"
                 >
                   <FaEdit size={16} />
                 </button>

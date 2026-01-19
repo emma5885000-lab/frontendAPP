@@ -62,7 +62,7 @@ function PatientPrediction() {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center h-64">
-        <AiOutlineLoading3Quarters className="w-10 h-10 text-blue-600 animate-spin mb-3" />
+        <AiOutlineLoading3Quarters className="w-10 h-10 text-sky-500 animate-spin mb-3" />
         <p className="text-gray-500 text-sm">Analyse en cours...</p>
       </div>
     );
@@ -81,8 +81,8 @@ function PatientPrediction() {
 
   if (!predictionData) {
     return (
-      <div className="mx-4 my-4 p-4 bg-blue-50 border border-blue-200 rounded-xl">
-        <p className="text-blue-700 text-sm">Aucune prédiction disponible</p>
+      <div className="mx-4 my-4 p-4 bg-sky-50 border border-sky-200 rounded-xl">
+        <p className="text-sky-700 text-sm">Aucune prédiction disponible</p>
       </div>
     );
   }
@@ -93,8 +93,8 @@ function PatientPrediction() {
     <div className="px-4 py-4">
       {/* Header */}
       <div className="flex items-center gap-3 mb-5">
-        <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)' }}>
-          <FaBrain size={24} className="text-blue-700" />
+        <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%)' }}>
+          <FaBrain size={24} className="text-sky-600" />
         </div>
         <div>
           <h1 className="text-xl font-bold text-gray-800">Analyse IA</h1>
@@ -121,7 +121,7 @@ function PatientPrediction() {
           <div className="text-xs text-gray-500">Score santé</div>
         </div>
         <div className="bg-white p-3 rounded-xl shadow-sm text-center">
-          <FaHeart size={20} className="text-blue-600 mx-auto mb-1" />
+          <FaHeart size={20} className="text-sky-500 mx-auto mb-1" />
           <div className="text-xl font-bold text-gray-800">{predictionData.relative_risk}%</div>
           <div className="text-xs text-gray-500">Risque relatif</div>
         </div>
@@ -138,9 +138,9 @@ function PatientPrediction() {
           <h2 className="text-lg font-semibold text-gray-800 mb-3">Facteurs de risque</h2>
           <div className="space-y-2 mb-5">
             {predictionData.risk_factors.map((factor, index) => (
-              <div key={index} className="flex items-start gap-3 p-3 bg-blue-50 rounded-xl border border-blue-100">
-                <AiOutlineWarning size={18} className="text-blue-600 flex-shrink-0 mt-0.5" />
-                <span className="text-sm text-blue-800">{factor}</span>
+              <div key={index} className="flex items-start gap-3 p-3 bg-sky-50 rounded-xl border border-sky-100">
+                <AiOutlineWarning size={18} className="text-sky-500 flex-shrink-0 mt-0.5" />
+                <span className="text-sm text-sky-800">{factor}</span>
               </div>
             ))}
           </div>

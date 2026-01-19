@@ -53,7 +53,7 @@ function PatientTableau() {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center h-64">
-        <AiOutlineLoading3Quarters className="w-8 h-8 animate-spin text-blue-600 mb-3" />
+        <AiOutlineLoading3Quarters className="w-8 h-8 animate-spin text-sky-500 mb-3" />
         <span className="text-gray-500 text-sm">Chargement...</span>
       </div>
     );
@@ -88,8 +88,8 @@ function PatientTableau() {
       unit: data.stats.heart_rate.unit,
       status: data.stats.heart_rate.status,
       color: 'sky',
-      bgColor: 'bg-blue-100',
-      iconColor: 'text-blue-700'
+      bgColor: 'bg-sky-100',
+      iconColor: 'text-sky-600'
     },
     { 
       icon: FaTint, 
@@ -108,8 +108,8 @@ function PatientTableau() {
       unit: data.stats.air_quality.unit,
       status: data.stats.air_quality.status,
       color: 'sky',
-      bgColor: 'bg-blue-100',
-      iconColor: 'text-blue-700'
+      bgColor: 'bg-sky-100',
+      iconColor: 'text-sky-600'
     },
   ];
 
@@ -137,7 +137,7 @@ function PatientTableau() {
                 stat.status === 'Normal' || stat.status === 'Bon' 
                   ? 'bg-emerald-100 text-emerald-700' 
                   : stat.status === 'Attention'
-                  ? 'bg-blue-100 text-blue-700'
+                  ? 'bg-sky-100 text-sky-700'
                   : 'bg-gray-100 text-gray-600'
               }`}>
                 {stat.status || 'N/A'}
@@ -156,7 +156,7 @@ function PatientTableau() {
               <div key={index} className="flex-1 flex flex-col items-center">
                 <div
                   className="w-full rounded-t-lg"
-                  style={{ height: `${height}%`, background: 'linear-gradient(0deg, #024BB9 0%, #34d399 100%)' }}
+                  style={{ height: `${height}%`, background: 'linear-gradient(0deg, #0ea5e9 0%, #34d399 100%)' }}
                 ></div>
                 <div className="text-xs text-gray-400 mt-2">
                   {['L', 'M', 'M', 'J', 'V', 'S', 'D'][index]}

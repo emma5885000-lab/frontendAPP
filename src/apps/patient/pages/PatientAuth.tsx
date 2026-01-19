@@ -88,14 +88,14 @@ function PatientAuth({ register = false }: PatientAuthProps) {
   };
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ background: 'linear-gradient(135deg, #024BB9 0%, #01337a 100%)' }}>
+    <div className="min-h-screen flex flex-col" style={{ background: 'linear-gradient(135deg, #38bdf8 0%, #0284c7 100%)' }}>
       {/* Header */}
       <div className="text-center pt-12 pb-8 text-white">
         <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
           H
         </div>
         <h1 className="text-2xl font-bold">HEALTH TIC</h1>
-        <p className="text-blue-100 text-sm mt-1">Votre santé connectée</p>
+        <p className="text-sky-100 text-sm mt-1">Votre santé connectée</p>
       </div>
 
       {/* Formulaire */}
@@ -130,7 +130,7 @@ function PatientAuth({ register = false }: PatientAuthProps) {
                   value={formData.username}
                   onChange={handleChange}
                   placeholder="Votre nom d'utilisateur"
-                  className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                  className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
                   required
                 />
               </div>
@@ -150,7 +150,7 @@ function PatientAuth({ register = false }: PatientAuthProps) {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="votre@email.com"
-                className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
                 required
               />
             </div>
@@ -169,7 +169,7 @@ function PatientAuth({ register = false }: PatientAuthProps) {
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="••••••••"
-                className="w-full pl-11 pr-12 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                className="w-full pl-11 pr-12 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
                 required
               />
               <button
@@ -196,7 +196,7 @@ function PatientAuth({ register = false }: PatientAuthProps) {
                   value={formData.confirmPassword}
                   onChange={handleChange}
                   placeholder="••••••••"
-                  className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                  className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
                   required
                 />
               </div>
@@ -226,7 +226,7 @@ function PatientAuth({ register = false }: PatientAuthProps) {
             {isRegister ? 'Déjà un compte ?' : 'Pas encore de compte ?'}
             <button
               onClick={() => setIsRegister(!isRegister)}
-              className="ml-1 text-blue-700 font-semibold"
+              className="ml-1 text-sky-600 font-semibold"
             >
               {isRegister ? 'Se connecter' : 'S\'inscrire'}
             </button>
@@ -238,7 +238,7 @@ function PatientAuth({ register = false }: PatientAuthProps) {
           <p className="text-xs text-gray-400 mb-2">Vous êtes médecin ?</p>
           <button
             onClick={() => navigate('/login')}
-            className="text-sm text-blue-700 font-medium"
+            className="text-sm text-sky-600 font-medium"
           >
             Accéder à l'espace médecin →
           </button>

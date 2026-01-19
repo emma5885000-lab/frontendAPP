@@ -79,7 +79,7 @@ function PatientMessagerie() {
           >
             <FaArrowLeft size={20} />
           </button>
-          <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-semibold" style={{ background: 'linear-gradient(135deg, #024BB9 0%, #01337a 100%)' }}>
+          <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-semibold" style={{ background: 'linear-gradient(135deg, #38bdf8 0%, #0284c7 100%)' }}>
             {selectedConv.avatar}
           </div>
           <div className="flex-1">
@@ -156,7 +156,7 @@ function PatientMessagerie() {
             className="w-full flex items-center gap-3 p-4 bg-white rounded-xl shadow-sm active:bg-gray-50 transition-colors"
           >
             <div className="relative">
-              <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold" style={{ background: 'linear-gradient(135deg, #024BB9 0%, #01337a 100%)' }}>
+              <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold" style={{ background: 'linear-gradient(135deg, #38bdf8 0%, #0284c7 100%)' }}>
                 {conv.avatar}
               </div>
               {conv.unread > 0 && (
