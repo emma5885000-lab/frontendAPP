@@ -15,10 +15,10 @@ function PatientProfil() {
 
   return (
     <div className="px-4 py-4">
-      <div className="bg-gradient-to-br from-blue-500 to-blue-700 p-6 rounded-2xl text-white text-center mb-5">
+      <div className="bg-gradient-to-br from-sky-400 to-sky-600 p-6 rounded-2xl text-white text-center mb-5">
         <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl font-bold">{initials}</div>
         <h1 className="text-xl font-bold mb-1">{username}</h1>
-        <p className="text-blue-100 text-sm">{email}</p>
+        <p className="text-sky-100 text-sm">{email}</p>
         <div className="mt-3 inline-flex items-center gap-2 bg-white/20 px-3 py-1.5 rounded-full text-sm">
           <Shield size={14} /><span>Patient verifie</span>
         </div>
@@ -27,7 +27,7 @@ function PatientProfil() {
         <h2 className="text-sm font-semibold text-gray-500 mb-3">INFORMATIONS</h2>
         <div className="space-y-3">
           <div className="flex items-center gap-3">
-            <Mail size={18} className="text-blue-600" />
+            <Mail size={18} className="text-sky-600" />
             <div><div className="text-xs text-gray-400">Email</div><div className="text-sm text-gray-800">{email}</div></div>
           </div>
           <div className="flex items-center gap-3">
@@ -35,7 +35,7 @@ function PatientProfil() {
             <div><div className="text-xs text-gray-400">Telephone</div><div className="text-sm text-gray-800">+237 6XX XXX XXX</div></div>
           </div>
           <div className="flex items-center gap-3">
-            <Calendar size={18} className="text-purple-600" />
+            <Calendar size={18} className="text-sky-600" />
             <div><div className="text-xs text-gray-400">Membre depuis</div><div className="text-sm text-gray-800">Janvier 2025</div></div>
           </div>
         </div>
@@ -54,7 +54,7 @@ function PatientProfil() {
           <HelpCircle size={18} className="text-gray-600" /><span className="flex-1 text-left text-gray-800">Aide</span><ChevronRight size={18} className="text-gray-400" />
         </button>
       </div>
-      <button onClick={handleLogout} className="w-full flex items-center justify-center gap-2 p-4 bg-red-50 text-red-600 rounded-xl font-semibold">
+      <button onClick={handleLogout} className="w-full flex items-center justify-center gap-2 p-4 bg-sky-50 text-sky-600 rounded-xl font-semibold">
         <LogOut size={20} /><span>Se deconnecter</span>
       </button>
       <div className="text-center mt-6 text-xs text-gray-400">HEALTH TIC v1.0.0</div>

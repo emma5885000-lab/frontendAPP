@@ -63,17 +63,17 @@ function PatientAlertes() {
 
   const getAlertIcon = (type: string) => {
     switch(type) {
-      case 'warning': return <AlertTriangle size={20} className="text-amber-500" />;
+      case 'warning': return <AlertTriangle size={20} className="text-sky-500" />;
       case 'success': return <CheckCircle size={20} className="text-emerald-500" />;
-      default: return <Info size={20} className="text-blue-500" />;
+      default: return <Info size={20} className="text-sky-500" />;
     }
   };
 
   const getAlertStyle = (type: string) => {
     switch(type) {
-      case 'warning': return 'border-l-amber-500 bg-amber-50';
+      case 'warning': return 'border-l-sky-500 bg-sky-50';
       case 'success': return 'border-l-emerald-500 bg-emerald-50';
-      default: return 'border-l-blue-500 bg-blue-50';
+      default: return 'border-l-sky-500 bg-sky-50';
     }
   };
 
@@ -90,7 +90,7 @@ function PatientAlertes() {
             onClick={() => setFilter(filter === 'all' ? 'unread' : 'all')}
             className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
               filter === 'unread' 
-                ? 'bg-blue-100 text-blue-600' 
+                ? 'bg-sky-100 text-sky-600' 
                 : 'bg-gray-100 text-gray-600'
             }`}
           >
@@ -119,7 +119,7 @@ function PatientAlertes() {
                   <div className="flex items-center justify-between mb-1">
                     <span className="font-semibold text-gray-800">{alerte.title}</span>
                     {!alerte.read && (
-                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                      <span className="w-2 h-2 bg-emerald-500 rounded-full"></span>
                     )}
                   </div>
                   <p className="text-sm text-gray-600 mb-2">{alerte.message}</p>

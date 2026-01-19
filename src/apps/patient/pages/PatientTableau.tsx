@@ -52,7 +52,7 @@ function PatientTableau() {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center h-64">
-        <Loader2 className="w-8 h-8 animate-spin text-blue-500 mb-3" />
+        <Loader2 className="w-8 h-8 animate-spin text-sky-500 mb-3" />
         <span className="text-gray-500 text-sm">Chargement...</span>
       </div>
     );
@@ -86,9 +86,9 @@ function PatientTableau() {
       value: data.stats.heart_rate.value,
       unit: data.stats.heart_rate.unit,
       status: data.stats.heart_rate.status,
-      color: 'blue',
-      bgColor: 'bg-blue-100',
-      iconColor: 'text-blue-600'
+      color: 'sky',
+      bgColor: 'bg-sky-100',
+      iconColor: 'text-sky-600'
     },
     { 
       icon: Droplets, 
@@ -96,9 +96,9 @@ function PatientTableau() {
       value: data.stats.spo2.value,
       unit: data.stats.spo2.unit,
       status: data.stats.spo2.status,
-      color: 'purple',
-      bgColor: 'bg-purple-100',
-      iconColor: 'text-purple-600'
+      color: 'emerald',
+      bgColor: 'bg-emerald-100',
+      iconColor: 'text-emerald-600'
     },
     { 
       icon: Sun, 
@@ -106,9 +106,9 @@ function PatientTableau() {
       value: data.stats.air_quality.value,
       unit: data.stats.air_quality.unit,
       status: data.stats.air_quality.status,
-      color: 'amber',
-      bgColor: 'bg-amber-100',
-      iconColor: 'text-amber-600'
+      color: 'sky',
+      bgColor: 'bg-sky-100',
+      iconColor: 'text-sky-600'
     },
   ];
 
@@ -136,7 +136,7 @@ function PatientTableau() {
                 stat.status === 'Normal' || stat.status === 'Bon' 
                   ? 'bg-emerald-100 text-emerald-700' 
                   : stat.status === 'Attention'
-                  ? 'bg-amber-100 text-amber-700'
+                  ? 'bg-sky-100 text-sky-700'
                   : 'bg-gray-100 text-gray-600'
               }`}>
                 {stat.status || 'N/A'}
@@ -154,7 +154,7 @@ function PatientTableau() {
             {data.trends.map((height, index) => (
               <div key={index} className="flex-1 flex flex-col items-center">
                 <div
-                  className="w-full bg-gradient-to-t from-blue-600 to-blue-400 rounded-t-lg"
+                  className="w-full bg-gradient-to-t from-sky-500 to-emerald-400 rounded-t-lg"
                   style={{ height: `${height}%` }}
                 ></div>
                 <div className="text-xs text-gray-400 mt-2">

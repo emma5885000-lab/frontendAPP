@@ -87,14 +87,14 @@ function PatientAuth({ register = false }: PatientAuthProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-500 to-blue-700 flex flex-col">
+    <div className="min-h-screen bg-gradient-to-br from-sky-400 to-sky-600 flex flex-col">
       {/* Header */}
       <div className="text-center pt-12 pb-8 text-white">
         <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
           H
         </div>
         <h1 className="text-2xl font-bold">HEALTH TIC</h1>
-        <p className="text-blue-100 text-sm mt-1">Votre santé connectée</p>
+        <p className="text-sky-100 text-sm mt-1">Votre santé connectée</p>
       </div>
 
       {/* Formulaire */}
@@ -128,7 +128,7 @@ function PatientAuth({ register = false }: PatientAuthProps) {
                 value={formData.username}
                 onChange={handleChange}
                 placeholder="Votre nom d'utilisateur"
-                className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
                 required
               />
             </div>
@@ -148,7 +148,7 @@ function PatientAuth({ register = false }: PatientAuthProps) {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="votre@email.com"
-                  className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
                   required
                 />
               </div>
@@ -168,7 +168,7 @@ function PatientAuth({ register = false }: PatientAuthProps) {
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="••••••••"
-                className="w-full pl-11 pr-12 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full pl-11 pr-12 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
                 required
               />
               <button
@@ -195,7 +195,7 @@ function PatientAuth({ register = false }: PatientAuthProps) {
                   value={formData.confirmPassword}
                   onChange={handleChange}
                   placeholder="••••••••"
-                  className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
                   required
                 />
               </div>
@@ -206,7 +206,7 @@ function PatientAuth({ register = false }: PatientAuthProps) {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-600 text-white py-3.5 rounded-xl font-semibold flex items-center justify-center gap-2 active:bg-blue-700 disabled:opacity-50 transition-colors"
+            className="w-full bg-emerald-500 text-white py-3.5 rounded-xl font-semibold flex items-center justify-center gap-2 active:bg-emerald-600 disabled:opacity-50 transition-colors"
           >
             {loading ? (
               <>
@@ -225,7 +225,7 @@ function PatientAuth({ register = false }: PatientAuthProps) {
             {isRegister ? 'Déjà un compte ?' : 'Pas encore de compte ?'}
             <button
               onClick={() => setIsRegister(!isRegister)}
-              className="ml-1 text-blue-600 font-semibold"
+              className="ml-1 text-sky-600 font-semibold"
             >
               {isRegister ? 'Se connecter' : 'S\'inscrire'}
             </button>
@@ -237,7 +237,7 @@ function PatientAuth({ register = false }: PatientAuthProps) {
           <p className="text-xs text-gray-400 mb-2">Vous êtes médecin ?</p>
           <button
             onClick={() => navigate('/login')}
-            className="text-sm text-blue-600 font-medium"
+            className="text-sm text-sky-600 font-medium"
           >
             Accéder à l'espace médecin →
           </button>

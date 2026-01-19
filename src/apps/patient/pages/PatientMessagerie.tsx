@@ -79,7 +79,7 @@ function PatientMessagerie() {
           >
             <ArrowLeft size={20} />
           </button>
-          <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center text-white font-semibold">
+          <div className="w-10 h-10 bg-gradient-to-br from-sky-400 to-sky-600 rounded-full flex items-center justify-center text-white font-semibold">
             {selectedConv.avatar}
           </div>
           <div className="flex-1">
@@ -104,13 +104,13 @@ function PatientMessagerie() {
               <div
                 className={`max-w-[80%] p-3 rounded-2xl ${
                   msg.sender === 'patient'
-                    ? 'bg-blue-600 text-white rounded-br-md'
+                    ? 'bg-sky-500 text-white rounded-br-md'
                     : 'bg-white text-gray-800 rounded-bl-md shadow-sm'
                 }`}
               >
                 <p className="text-sm">{msg.text}</p>
                 <div className={`text-xs mt-1 ${
-                  msg.sender === 'patient' ? 'text-blue-100' : 'text-gray-400'
+                  msg.sender === 'patient' ? 'text-sky-100' : 'text-gray-400'
                 }`}>
                   {msg.time}
                 </div>
@@ -128,11 +128,11 @@ function PatientMessagerie() {
               onChange={(e) => setNewMessage(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
               placeholder="Votre message..."
-              className="flex-1 px-4 py-3 bg-gray-100 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="flex-1 px-4 py-3 bg-gray-100 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-sky-500"
             />
             <button
               onClick={sendMessage}
-              className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white active:bg-blue-700"
+              className="w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center text-white active:bg-emerald-600"
             >
               <Send size={20} />
             </button>
@@ -156,11 +156,11 @@ function PatientMessagerie() {
             className="w-full flex items-center gap-3 p-4 bg-white rounded-xl shadow-sm active:bg-gray-50 transition-colors"
           >
             <div className="relative">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center text-white font-semibold">
+              <div className="w-12 h-12 bg-gradient-to-br from-sky-400 to-sky-600 rounded-full flex items-center justify-center text-white font-semibold">
                 {conv.avatar}
               </div>
               {conv.unread > 0 && (
-                <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full text-white text-xs flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 w-5 h-5 bg-emerald-500 rounded-full text-white text-xs flex items-center justify-center">
                   {conv.unread}
                 </span>
               )}

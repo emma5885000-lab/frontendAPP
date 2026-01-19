@@ -61,7 +61,7 @@ function PatientPrediction() {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center h-64">
-        <Loader2 className="w-10 h-10 text-blue-500 animate-spin mb-3" />
+        <Loader2 className="w-10 h-10 text-sky-500 animate-spin mb-3" />
         <p className="text-gray-500 text-sm">Analyse en cours...</p>
       </div>
     );
@@ -80,8 +80,8 @@ function PatientPrediction() {
 
   if (!predictionData) {
     return (
-      <div className="mx-4 my-4 p-4 bg-blue-50 border border-blue-200 rounded-xl">
-        <p className="text-blue-700 text-sm">Aucune prédiction disponible</p>
+      <div className="mx-4 my-4 p-4 bg-sky-50 border border-sky-200 rounded-xl">
+        <p className="text-sky-700 text-sm">Aucune prédiction disponible</p>
       </div>
     );
   }
@@ -92,8 +92,8 @@ function PatientPrediction() {
     <div className="px-4 py-4">
       {/* Header */}
       <div className="flex items-center gap-3 mb-5">
-        <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl flex items-center justify-center">
-          <Brain size={24} className="text-blue-600" />
+        <div className="w-12 h-12 bg-gradient-to-br from-sky-100 to-sky-200 rounded-xl flex items-center justify-center">
+          <Brain size={24} className="text-sky-600" />
         </div>
         <div>
           <h1 className="text-xl font-bold text-gray-800">Analyse IA</h1>
@@ -120,12 +120,12 @@ function PatientPrediction() {
           <div className="text-xs text-gray-500">Score santé</div>
         </div>
         <div className="bg-white p-3 rounded-xl shadow-sm text-center">
-          <Heart size={20} className="text-blue-500 mx-auto mb-1" />
+          <Heart size={20} className="text-sky-500 mx-auto mb-1" />
           <div className="text-xl font-bold text-gray-800">{predictionData.relative_risk}%</div>
           <div className="text-xs text-gray-500">Risque relatif</div>
         </div>
         <div className="bg-white p-3 rounded-xl shadow-sm text-center">
-          <Wind size={20} className="text-purple-500 mx-auto mb-1" />
+          <Wind size={20} className="text-emerald-500 mx-auto mb-1" />
           <div className="text-xl font-bold text-gray-800">{predictionData.confidence}%</div>
           <div className="text-xs text-gray-500">Confiance</div>
         </div>
@@ -137,9 +137,9 @@ function PatientPrediction() {
           <h2 className="text-lg font-semibold text-gray-800 mb-3">Facteurs de risque</h2>
           <div className="space-y-2 mb-5">
             {predictionData.risk_factors.map((factor, index) => (
-              <div key={index} className="flex items-start gap-3 p-3 bg-amber-50 rounded-xl border border-amber-100">
-                <AlertTriangle size={18} className="text-amber-500 flex-shrink-0 mt-0.5" />
-                <span className="text-sm text-amber-800">{factor}</span>
+              <div key={index} className="flex items-start gap-3 p-3 bg-sky-50 rounded-xl border border-sky-100">
+                <AlertTriangle size={18} className="text-sky-500 flex-shrink-0 mt-0.5" />
+                <span className="text-sm text-sky-800">{factor}</span>
               </div>
             ))}
           </div>

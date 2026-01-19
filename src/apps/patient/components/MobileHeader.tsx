@@ -15,7 +15,7 @@ function MobileHeader() {
     .toUpperCase();
 
   return (
-    <header className="sticky top-0 z-50 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-3 safe-area-top">
+    <header className="sticky top-0 z-50 bg-gradient-to-r from-sky-500 to-sky-600 text-white px-4 py-3 safe-area-top">
       <div className="flex items-center justify-between">
         {/* Logo et titre */}
         <div className="flex items-center gap-3">
@@ -24,7 +24,7 @@ function MobileHeader() {
           </div>
           <div>
             <div className="font-bold text-lg">HEALTH TIC</div>
-            <div className="text-xs text-blue-100">Votre santé connectée</div>
+            <div className="text-xs text-sky-100">Votre santé connectée</div>
           </div>
         </div>
 
@@ -35,7 +35,7 @@ function MobileHeader() {
             className="relative p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
           >
             <Bell size={20} />
-            <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full border border-white"></span>
+            <span className="absolute top-1 right-1 w-2 h-2 bg-emerald-500 rounded-full border border-white"></span>
           </button>
           
           <button 
