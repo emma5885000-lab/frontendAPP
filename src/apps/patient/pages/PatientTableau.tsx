@@ -72,7 +72,7 @@ function PatientTableau() {
 
   const stats = [
     { 
-      icon: FaHeartbeat, 
+      icon: FaWind, 
       label: 'Fréq. respiratoire', 
       value: data.stats.respiratory_rate.value,
       unit: data.stats.respiratory_rate.unit,
@@ -82,7 +82,7 @@ function PatientTableau() {
       iconColor: 'text-emerald-600'
     },
     { 
-      icon: FaWind, 
+      icon: FaHeartbeat, 
       label: 'Fréq. cardiaque', 
       value: data.stats.heart_rate.value,
       unit: data.stats.heart_rate.unit,
@@ -93,7 +93,7 @@ function PatientTableau() {
     },
     { 
       icon: FaTint, 
-      label: 'SpO2', 
+      label: 'Saturation O₂', 
       value: data.stats.spo2.value,
       unit: data.stats.spo2.unit,
       status: data.stats.spo2.status,
@@ -103,7 +103,7 @@ function PatientTableau() {
     },
     { 
       icon: FaSun, 
-      label: 'Qualité air', 
+      label: 'Qualité de l\'air', 
       value: data.stats.air_quality.value,
       unit: data.stats.air_quality.unit,
       status: data.stats.air_quality.status,
