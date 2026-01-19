@@ -45,7 +45,7 @@ function PatientAuth({ register = false }: PatientAuthProps) {
           return;
         }
         
-        await axios.post(`${API_BASE}/auth/register/`, {
+        await axios.post(`${API_BASE}/users/register/`, {
           username: formData.username,
           email: formData.email,
           password: formData.password,
@@ -53,7 +53,7 @@ function PatientAuth({ register = false }: PatientAuthProps) {
         });
         
         // Auto-login après inscription
-        const loginRes = await axios.post(`${API_BASE}/auth/login/`, {
+        const loginRes = await axios.post(`${API_BASE}/users/login/`, {
           username: formData.username,
           password: formData.password
         });
@@ -66,7 +66,7 @@ function PatientAuth({ register = false }: PatientAuthProps) {
         
         navigate('/patient');
       } else {
-        const response = await axios.post(`${API_BASE}/auth/login/`, {
+        const response = await axios.post(`${API_BASE}/users/login/`, {
           username: formData.username,
           password: formData.password
         });
