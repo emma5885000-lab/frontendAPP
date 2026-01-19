@@ -15,7 +15,7 @@ function MobileHeader() {
     .toUpperCase();
 
   return (
-    <header className="sticky top-0 z-50 bg-gradient-to-r from-sky-500 to-sky-600 text-white px-4 py-3 safe-area-top">
+    <header className="sticky top-0 z-50 text-white px-4 py-3 safe-area-top" style={{ background: 'linear-gradient(90deg, #0ea5e9 0%, #0284c7 100%)' }}>
       <div className="flex items-center justify-between">
         {/* Logo et titre */}
         <div className="flex items-center gap-3">

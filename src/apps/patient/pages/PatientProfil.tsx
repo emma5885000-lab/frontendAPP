@@ -15,7 +15,7 @@ function PatientProfil() {
 
   return (
     <div className="px-4 py-4">
-      <div className="bg-gradient-to-br from-sky-400 to-sky-600 p-6 rounded-2xl text-white text-center mb-5">
+      <div className="p-6 rounded-2xl text-white text-center mb-5" style={{ background: 'linear-gradient(135deg, #38bdf8 0%, #0284c7 100%)' }}>
         <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl font-bold">{initials}</div>
         <h1 className="text-xl font-bold mb-1">{username}</h1>
         <p className="text-sky-100 text-sm">{email}</p>

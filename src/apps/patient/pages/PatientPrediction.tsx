@@ -49,13 +49,13 @@ function PatientPrediction() {
   const getRiskStyle = (level: string) => {
     switch(level?.toLowerCase()) {
       case 'faible':
-        return { bg: 'from-emerald-400 to-emerald-600', text: 'text-emerald-600', light: 'bg-emerald-50' };
+        return { bgStyle: 'linear-gradient(135deg, #34d399 0%, #059669 100%)', text: 'text-emerald-600', light: 'bg-emerald-50' };
       case 'modéré':
-        return { bg: 'from-amber-400 to-amber-600', text: 'text-amber-600', light: 'bg-amber-50' };
+        return { bgStyle: 'linear-gradient(135deg, #fbbf24 0%, #d97706 100%)', text: 'text-amber-600', light: 'bg-amber-50' };
       case 'élevé':
-        return { bg: 'from-red-400 to-red-600', text: 'text-red-600', light: 'bg-red-50' };
+        return { bgStyle: 'linear-gradient(135deg, #f87171 0%, #dc2626 100%)', text: 'text-red-600', light: 'bg-red-50' };
       default:
-        return { bg: 'from-gray-400 to-gray-600', text: 'text-gray-600', light: 'bg-gray-50' };
+        return { bgStyle: 'linear-gradient(135deg, #9ca3af 0%, #4b5563 100%)', text: 'text-gray-600', light: 'bg-gray-50' };
     }
   };
 
@@ -93,7 +93,7 @@ function PatientPrediction() {
     <div className="px-4 py-4">
       {/* Header */}
       <div className="flex items-center gap-3 mb-5">
-        <div className="w-12 h-12 bg-gradient-to-br from-sky-100 to-sky-200 rounded-xl flex items-center justify-center">
+        <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%)' }}>
           <FaBrain size={24} className="text-sky-600" />
         </div>
         <div>
@@ -103,7 +103,7 @@ function PatientPrediction() {
       </div>
 
       {/* Niveau de risque principal */}
-      <div className={`bg-gradient-to-br ${riskStyle.bg} p-5 rounded-2xl text-white mb-5`}>
+      <div className="p-5 rounded-2xl text-white mb-5" style={{ background: riskStyle.bgStyle }}>
         <div className="text-center">
           <div className="text-sm opacity-90 mb-2">Niveau de risque respiratoire</div>
           <div className="text-4xl font-bold mb-2">{predictionData.risk_level}</div>

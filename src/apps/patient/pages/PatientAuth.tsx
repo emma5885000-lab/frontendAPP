@@ -88,7 +88,7 @@ function PatientAuth({ register = false }: PatientAuthProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-400 to-sky-600 flex flex-col">
+    <div className="min-h-screen flex flex-col" style={{ background: 'linear-gradient(135deg, #38bdf8 0%, #0284c7 100%)' }}>
       {/* Header */}
       <div className="text-center pt-12 pb-8 text-white">
         <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl font-bold">

@@ -155,8 +155,8 @@ function PatientTableau() {
             {data.trends.map((height, index) => (
               <div key={index} className="flex-1 flex flex-col items-center">
                 <div
-                  className="w-full bg-gradient-to-t from-sky-500 to-emerald-400 rounded-t-lg"
-                  style={{ height: `${height}%` }}
+                  className="w-full rounded-t-lg"
+                  style={{ height: `${height}%`, background: 'linear-gradient(0deg, #0ea5e9 0%, #34d399 100%)' }}
                 ></div>
                 <div className="text-xs text-gray-400 mt-2">
                   {['L', 'M', 'M', 'J', 'V', 'S', 'D'][index]}
