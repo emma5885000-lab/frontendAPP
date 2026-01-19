@@ -10,12 +10,12 @@ function PatientAccueil() {
 
   return (
     <div className="px-4 py-4">
-      <div className="p-5 rounded-2xl text-white mb-5" style={{ background: 'linear-gradient(135deg, #38bdf8 0%, #0284c7 100%)' }}>
+      <div className="p-5 rounded-2xl text-white mb-5" style={{ background: 'linear-gradient(135deg, #024BB9 0%, #01337a 100%)' }}>
         <h1 className="text-xl font-bold mb-1">Bonjour {username} 👋</h1>
-        <p className="text-sm text-sky-100 mb-4">Suivez votre santé respiratoire en temps réel</p>
+        <p className="text-sm text-blue-100 mb-4">Suivez votre santé respiratoire en temps réel</p>
         <button
           onClick={() => navigate('/patient/prediction')}
-          className="bg-white text-sky-600 px-4 py-2.5 rounded-xl font-semibold text-sm flex items-center gap-2"
+          className="bg-white text-blue-700 px-4 py-2.5 rounded-xl font-semibold text-sm flex items-center gap-2"
         >
           <FaBrain size={18} />
           Analyse IA
@@ -34,12 +34,12 @@ function PatientAccueil() {
         </div>
 
         <div className="bg-white p-4 rounded-xl shadow-sm">
-          <div className="w-8 h-8 bg-sky-100 rounded-lg flex items-center justify-center mb-2">
-            <FaWind size={18} className="text-sky-600" />
+          <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mb-2">
+            <FaWind size={18} className="text-blue-700" />
           </div>
           <div className="text-2xl font-bold text-gray-800">72</div>
           <div className="text-xs text-gray-500">Fréq. cardiaque</div>
-          <div className="text-xs text-sky-500 font-medium mt-1">bpm</div>
+          <div className="text-xs text-blue-600 font-medium mt-1">bpm</div>
         </div>
 
         <div className="bg-white p-4 rounded-xl shadow-sm">
@@ -52,12 +52,12 @@ function PatientAccueil() {
         </div>
 
         <div className="bg-white p-4 rounded-xl shadow-sm">
-          <div className="w-8 h-8 bg-sky-100 rounded-lg flex items-center justify-center mb-2">
-            <FaBell size={18} className="text-sky-600" />
+          <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mb-2">
+            <FaBell size={18} className="text-blue-700" />
           </div>
           <div className="text-2xl font-bold text-gray-800">2</div>
           <div className="text-xs text-gray-500">Alertes</div>
-          <div className="text-xs text-sky-500 font-medium mt-1">À consulter</div>
+          <div className="text-xs text-blue-600 font-medium mt-1">À consulter</div>
         </div>
       </div>
 
@@ -65,9 +65,9 @@ function PatientAccueil() {
       <div className="space-y-3">
         <button 
           onClick={() => navigate('/patient/prediction')} 
-          className="w-full flex items-center gap-4 p-4 bg-sky-50 rounded-xl active:bg-sky-100 transition-colors"
+          className="w-full flex items-center gap-4 p-4 bg-blue-50 rounded-xl active:bg-blue-100 transition-colors"
         >
-          <div className="w-12 h-12 bg-sky-500 rounded-xl flex items-center justify-center">
+          <div className="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center">
             <FaBrain size={24} className="text-white" />
           </div>
           <div className="flex-1 text-left">
@@ -93,9 +93,9 @@ function PatientAccueil() {
 
         <button 
           onClick={() => navigate('/patient/messagerie')} 
-          className="w-full flex items-center gap-4 p-4 bg-sky-50 rounded-xl active:bg-sky-100 transition-colors"
+          className="w-full flex items-center gap-4 p-4 bg-blue-50 rounded-xl active:bg-blue-100 transition-colors"
         >
-          <div className="w-12 h-12 bg-sky-500 rounded-xl flex items-center justify-center">
+          <div className="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center">
             <FaComments size={24} className="text-white" />
           </div>
           <div className="flex-1 text-left">

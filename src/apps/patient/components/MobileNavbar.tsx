@@ -31,14 +31,14 @@ function MobileNavbar() {
               className={({ isActive }) =>
                 `flex flex-col items-center justify-center py-1 px-3 rounded-xl transition-all ${
                   isActive
-                    ? 'text-sky-600'
+                    ? 'text-blue-700'
                     : 'text-gray-400 hover:text-gray-600'
                 }`
               }
             >
               {({ isActive }) => (
                 <>
-                  <div className={`p-2 rounded-xl transition-all ${isActive ? 'bg-sky-100' : ''}`}>
+                  <div className={`p-2 rounded-xl transition-all ${isActive ? 'bg-blue-100' : ''}`}>
                     <Icon size={22} />
                   </div>
                   <span className={`text-xs mt-1 ${isActive ? 'font-semibold' : 'font-medium'}`}>
