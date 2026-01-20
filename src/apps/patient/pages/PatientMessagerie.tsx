@@ -148,12 +148,12 @@ function PatientMessagerie() {
       <h1 className="text-xl font-bold text-gray-800 mb-1">Messagerie</h1>
       <p className="text-sm text-gray-500 mb-4">Vos conversations avec les médecins</p>
 
-      <div className="space-y-3">
+      <div className="bg-white rounded-xl overflow-hidden">
         {mockConversations.map((conv) => (
           <button
             key={conv.id}
             onClick={() => setSelectedConv(conv)}
-            className="w-full flex items-center gap-3 p-4 bg-white rounded-xl shadow-sm active:bg-gray-50 transition-colors"
+            className="w-full flex items-center gap-3 p-4 active:bg-gray-50 transition-colors"
           >
             <div className="relative">
               <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold" style={{ background: 'linear-gradient(135deg, #38bdf8 0%, #0284c7 100%)' }}>
