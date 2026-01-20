@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaBrain, FaShieldAlt, FaHeart, FaWind, FaLightbulb } from 'react-icons/fa';
+import { FaBrain, FaShieldAlt, FaHeart, FaWind, FaLightbulb, FaHandsWash, FaMask, FaHome, FaRunning, FaLeaf } from 'react-icons/fa';
 import { AiOutlineLoading3Quarters, AiOutlineWarning } from 'react-icons/ai';
 import axios from 'axios';
 import { useAuthStore } from '../../../store/authStore';
@@ -56,6 +56,36 @@ function PatientPrediction() {
         return { bgStyle: 'linear-gradient(135deg, #f87171 0%, #dc2626 100%)', text: 'text-red-600', light: 'bg-red-50' };
       default:
         return { bgStyle: 'linear-gradient(135deg, #9ca3af 0%, #4b5563 100%)', text: 'text-gray-600', light: 'bg-gray-50' };
+    }
+  };
+  
+  const getPreventionTips = (riskLevel: string) => {
+    const commonTips = [
+      { icon: <FaHandsWash />, title: "Lavage des mains", content: "Lavez-vous régulièrement les mains avec du savon pendant au moins 20 secondes." },
+      { icon: <FaLeaf />, title: "Air intérieur", content: "Aérez votre domicile au moins 10 minutes par jour, même en hiver." },
+    ];
+    
+    switch(riskLevel?.toLowerCase()) {
+      case 'faible':
+        return [
+          ...commonTips,
+          { icon: <FaRunning />, title: "Activité physique", content: "Maintenez une activité physique régulière pour renforcer votre système immunitaire." },
+        ];
+      case 'modéré':
+        return [
+          ...commonTips,
+          { icon: <FaHome />, title: "Environnement", content: "Évitez les environnements enfumés et les polluants qui peuvent irriter vos voies respiratoires." },
+          { icon: <FaMask />, title: "Protection", content: "Envisagez de porter un masque dans les lieux très fréquentés ou pollués." },
+        ];
+      case 'élevé':
+        return [
+          ...commonTips,
+          { icon: <FaHome />, title: "Limitation des sorties", content: "Limitez vos sorties lors des pics de pollution ou d'épidémies respiratoires." },
+          { icon: <FaMask />, title: "Port du masque", content: "Portez un masque dans les lieux publics pour protéger vos voies respiratoires." },
+          { icon: <FaLightbulb />, title: "Consultation", content: "Consultez rapidement un médecin en cas de symptômes respiratoires persistants." },
+        ];
+      default:
+        return commonTips;
     }
   };
 
@@ -170,6 +200,32 @@ function PatientPrediction() {
             </span>
           </div>
         )}
+      </div>
+      
+      {/* Prévention des maladies respiratoires */}
+      <h2 className="text-lg font-semibold text-gray-800 mb-3 mt-5">Prévention des maladies respiratoires</h2>
+      <div className="p-4 rounded-xl mb-4" style={{ background: `${riskStyle.light}` }}>
+        <p className="text-sm mb-3">
+          {predictionData.risk_level === 'Faible' && "Votre risque est faible, mais la prévention reste importante pour maintenir une bonne santé respiratoire."}
+          {predictionData.risk_level === 'Modéré' && "Avec un risque modéré, ces mesures préventives vous aideront à protéger votre santé respiratoire."}
+          {predictionData.risk_level === 'Élevé' && "Votre risque étant élevé, ces mesures préventives sont particulièrement importantes pour vous."}
+        </p>
+      </div>
+      
+      <div className="space-y-3 mb-5">
+        {getPreventionTips(predictionData.risk_level).map((tip, index) => (
+          <div key={index} className="bg-white p-4 rounded-xl shadow-sm">
+            <div className="flex items-start gap-3">
+              <div className="w-8 h-8 flex items-center justify-center rounded-lg bg-sky-100 text-sky-600">
+                {tip.icon}
+              </div>
+              <div>
+                <div className="font-semibold text-gray-800 mb-1">{tip.title}</div>
+                <div className="text-sm text-gray-600">{tip.content}</div>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
