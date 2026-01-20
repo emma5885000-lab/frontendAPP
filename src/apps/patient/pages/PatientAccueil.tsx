@@ -85,7 +85,7 @@ function PatientAccueil() {
   return (
     <div className="px-4 py-4">
       <div className="p-5 rounded-2xl text-white mb-5" style={{ background: 'linear-gradient(135deg, #38bdf8 0%, #0284c7 100%)' }}>
-        <h1 className="text-xl font-bold mb-1">Bonjour {username} 👋</h1>
+        <h1 className="text-xl font-bold mb-1">Bonjour {username} </h1>
         <p className="text-sm text-sky-100 mb-4">Suivez votre santé respiratoire en temps réel</p>
         <button
           onClick={() => navigate('/patient/prediction')}
