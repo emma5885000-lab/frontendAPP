@@ -214,6 +214,9 @@ function PatientDevices() {
                     <div className="font-semibold text-gray-800">{device.name}</div>
                     <div className="text-xs text-gray-400">
                       Dernière donnée: {formatDate(device.last_data_at)}
+                      {device.device_key === 'f3a3e94db29b4887946ee88a003c10649c3b6f533d024ed6f34a9d6831fb71f3' && (
+                        <span className="ml-2 text-amber-600 font-medium">(capteur COV instable)</span>
+                      )}
                     </div>
                   </div>
                   <div className={`px-3 py-1 rounded-full text-xs font-medium ${
