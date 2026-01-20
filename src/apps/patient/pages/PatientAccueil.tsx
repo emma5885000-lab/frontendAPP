@@ -1,11 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaHeartbeat, FaWind, FaTint, FaBrain, FaChartBar, FaComments, FaBell, FaChevronRight, FaThermometerHalf } from 'react-icons/fa';
+import { FaHeartbeat, FaWind, FaTint, FaBrain, FaChartBar, FaComments, FaChevronRight, FaThermometerHalf, FaLightbulb, FaRunning, FaAppleAlt, FaCalendarCheck, FaDumbbell, FaSpa, FaHandsWash, FaMask, FaHome, FaLeaf, FaShieldAlt, FaHeart } from 'react-icons/fa';
+import { GiLungs, GiMeditation } from 'react-icons/gi';
+import { MdAir, MdHealthAndSafety } from 'react-icons/md';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import axios from 'axios';
 import { useAuthStore } from '../../../store/authStore';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api';
+
+const getRecommendationIcon = (iconEmoji: string) => {
+  const iconMap: { [key: string]: JSX.Element } = {
+    '🫁': <GiLungs size={18} className="text-sky-600" />,
+    '🏃': <FaRunning size={18} className="text-emerald-600" />,
+    '🍎': <FaAppleAlt size={18} className="text-red-500" />,
+    '📅': <FaCalendarCheck size={18} className="text-sky-600" />,
+    '💪': <FaDumbbell size={18} className="text-amber-600" />,
+    '🧘': <GiMeditation size={18} className="text-purple-600" />,
+    '🌬️': <MdAir size={18} className="text-sky-500" />,
+    '💨': <FaWind size={18} className="text-sky-500" />,
+    '🏠': <FaHome size={18} className="text-amber-600" />,
+    '😷': <FaMask size={18} className="text-gray-600" />,
+    '🧼': <FaHandsWash size={18} className="text-sky-500" />,
+    '🌿': <FaLeaf size={18} className="text-emerald-600" />,
+    '💡': <FaLightbulb size={18} className="text-amber-500" />,
+    '❤️': <FaHeart size={18} className="text-red-500" />,
+    '🛡️': <FaShieldAlt size={18} className="text-emerald-600" />,
+    '🧠': <FaBrain size={18} className="text-purple-600" />,
+    '🩺': <MdHealthAndSafety size={18} className="text-sky-600" />,
+    '🧘‍♀️': <FaSpa size={18} className="text-purple-500" />,
+  };
+  return iconMap[iconEmoji] || <FaLightbulb size={18} className="text-sky-600" />;
+};
 
 interface DashboardStats {
   respiratory_rate: { value: number; unit: string; status: string };
@@ -165,12 +191,12 @@ function PatientAccueil() {
         <div className="mt-5">
           <h2 className="text-lg font-semibold text-gray-800 mb-3">Recommandations</h2>
           {recommendations.slice(0, 1).map((rec, index) => (
-            <div key={index} className={`p-4 rounded-xl border ${rec.bgClass.replace('bg-', 'border-')}`}>
+            <div key={index} className="p-4 rounded-xl bg-white">
               <div className="flex items-start gap-3">
-                <div className={`w-8 h-8 ${rec.bgClass} rounded-lg flex items-center justify-center text-lg`}>
-                  {rec.icon}
+                <div className="w-9 h-9 bg-sky-50 rounded-lg flex items-center justify-center">
+                  {getRecommendationIcon(rec.icon)}
                 </div>
-                <div>
+                <div className="flex-1">
                   <div className="text-sm font-semibold text-gray-800 mb-1">{rec.title}</div>
                   <p className="text-sm text-gray-600">{rec.description}</p>
                 </div>
