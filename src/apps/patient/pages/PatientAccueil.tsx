@@ -1,12 +1,60 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaHeartbeat, FaWind, FaTint, FaBrain, FaChartBar, FaComments, FaBell, FaChevronRight } from 'react-icons/fa';
+import { FaHeartbeat, FaWind, FaTint, FaBrain, FaChartBar, FaComments, FaBell, FaChevronRight, FaThermometerHalf } from 'react-icons/fa';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+import axios from 'axios';
 import { useAuthStore } from '../../../store/authStore';
+
+const API_BASE = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api';
+
+interface DashboardStats {
+  respiratory_rate: { value: number; unit: string; status: string };
+  heart_rate: { value: number; unit: string; status: string };
+  spo2: { value: number; unit: string; status: string };
+  temperature: { value: number; unit: string; status: string };
+}
+
+interface Recommendation {
+  icon: string;
+  title: string;
+  description: string;
+  bgClass: string;
+}
 
 function PatientAccueil() {
   const navigate = useNavigate();
   const user = useAuthStore(state => state.user);
+  const token = useAuthStore(state => state.token);
   const username = user?.username || "Patient";
+  
+  const [stats, setStats] = useState<DashboardStats | null>(null);
+  const [recommendations, setRecommendations] = useState<Recommendation[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Récupérer les données du tableau de bord
+        const dashboardResponse = await axios.get(`${API_BASE}/health/dashboard/`, {
+          headers: { Authorization: `Token ${token}` }
+        });
+        setStats(dashboardResponse.data.stats);
+        
+        // Récupérer les recommandations
+        const predictionResponse = await axios.get(`${API_BASE}/health/prediction/`, {
+          headers: { Authorization: `Token ${token}` }
+        });
+        setRecommendations(predictionResponse.data.recommendations || []);
+      } catch (err) {
+        console.error('Erreur chargement données:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (token) fetchData();
+    else setLoading(false);
+  }, [token]);
 
   return (
     <div className="px-4 py-4">
@@ -23,43 +71,50 @@ function PatientAccueil() {
       </div>
 
       <h2 className="text-lg font-semibold text-gray-800 mb-3">Vos indicateurs</h2>
-      <div className="grid grid-cols-2 gap-3 mb-5">
-        <div className="bg-white p-4 rounded-xl shadow-sm">
-          <div className="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center mb-2">
-            <FaHeartbeat size={18} className="text-emerald-600" />
-          </div>
-          <div className="text-2xl font-bold text-gray-800">16</div>
-          <div className="text-xs text-gray-500">Fréq. respiratoire</div>
-          <div className="text-xs text-emerald-500 font-medium mt-1">Normal</div>
+      
+      {loading ? (
+        <div className="flex justify-center py-8">
+          <AiOutlineLoading3Quarters className="w-8 h-8 animate-spin text-sky-500" />
         </div>
+      ) : (
+        <div className="grid grid-cols-2 gap-3 mb-5">
+          <div className="bg-white p-4 rounded-xl shadow-sm">
+            <div className="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center mb-2">
+              <FaWind size={18} className="text-emerald-600" />
+            </div>
+            <div className="text-2xl font-bold text-gray-800">{stats?.respiratory_rate?.value || 0}</div>
+            <div className="text-xs text-gray-500">Fréq. respiratoire</div>
+            <div className="text-xs text-emerald-500 font-medium mt-1">{stats?.respiratory_rate?.status || '--'}</div>
+          </div>
 
-        <div className="bg-white p-4 rounded-xl shadow-sm">
-          <div className="w-8 h-8 bg-sky-100 rounded-lg flex items-center justify-center mb-2">
-            <FaWind size={18} className="text-sky-600" />
+          <div className="bg-white p-4 rounded-xl shadow-sm">
+            <div className="w-8 h-8 bg-sky-100 rounded-lg flex items-center justify-center mb-2">
+              <FaHeartbeat size={18} className="text-sky-600" />
+            </div>
+            <div className="text-2xl font-bold text-gray-800">{stats?.heart_rate?.value || 0}</div>
+            <div className="text-xs text-gray-500">Fréq. cardiaque</div>
+            <div className="text-xs text-sky-500 font-medium mt-1">{stats?.heart_rate?.status || '--'}</div>
           </div>
-          <div className="text-2xl font-bold text-gray-800">72</div>
-          <div className="text-xs text-gray-500">Fréq. cardiaque</div>
-          <div className="text-xs text-sky-500 font-medium mt-1">bpm</div>
-        </div>
 
-        <div className="bg-white p-4 rounded-xl shadow-sm">
-          <div className="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center mb-2">
-            <FaTint size={18} className="text-emerald-600" />
+          <div className="bg-white p-4 rounded-xl shadow-sm">
+            <div className="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center mb-2">
+              <FaTint size={18} className="text-emerald-600" />
+            </div>
+            <div className="text-2xl font-bold text-gray-800">{stats?.spo2?.value || 0}%</div>
+            <div className="text-xs text-gray-500">Saturation O₂</div>
+            <div className="text-xs text-emerald-500 font-medium mt-1">{stats?.spo2?.status || '--'}</div>
           </div>
-          <div className="text-2xl font-bold text-gray-800">98%</div>
-          <div className="text-xs text-gray-500">SpO2</div>
-          <div className="text-xs text-emerald-500 font-medium mt-1">Excellent</div>
-        </div>
 
-        <div className="bg-white p-4 rounded-xl shadow-sm">
-          <div className="w-8 h-8 bg-sky-100 rounded-lg flex items-center justify-center mb-2">
-            <FaBell size={18} className="text-sky-600" />
+          <div className="bg-white p-4 rounded-xl shadow-sm">
+            <div className="w-8 h-8 bg-sky-100 rounded-lg flex items-center justify-center mb-2">
+              <FaThermometerHalf size={18} className="text-sky-600" />
+            </div>
+            <div className="text-2xl font-bold text-gray-800">{stats?.temperature?.value || 0}°C</div>
+            <div className="text-xs text-gray-500">Température</div>
+            <div className="text-xs text-sky-500 font-medium mt-1">{stats?.temperature?.status || '--'}</div>
           </div>
-          <div className="text-2xl font-bold text-gray-800">2</div>
-          <div className="text-xs text-gray-500">Alertes</div>
-          <div className="text-xs text-sky-500 font-medium mt-1">À consulter</div>
         </div>
-      </div>
+      )}
 
       <h2 className="text-lg font-semibold text-gray-800 mb-3">Actions rapides</h2>
       <div className="space-y-3">
@@ -106,12 +161,24 @@ function PatientAccueil() {
         </button>
       </div>
 
-      <div className="mt-5 bg-emerald-50 p-4 rounded-xl border border-emerald-200">
-        <div className="text-sm font-semibold text-emerald-700 mb-1">💡 Conseil du jour</div>
-        <p className="text-sm text-emerald-600">
-          Pensez à pratiquer des exercices de respiration profonde pendant 5 minutes chaque matin.
-        </p>
-      </div>
+      {recommendations.length > 0 && (
+        <div className="mt-5">
+          <h2 className="text-lg font-semibold text-gray-800 mb-3">Recommandations</h2>
+          {recommendations.slice(0, 1).map((rec, index) => (
+            <div key={index} className={`p-4 rounded-xl border ${rec.bgClass.replace('bg-', 'border-')}`}>
+              <div className="flex items-start gap-3">
+                <div className={`w-8 h-8 ${rec.bgClass} rounded-lg flex items-center justify-center text-lg`}>
+                  {rec.icon}
+                </div>
+                <div>
+                  <div className="text-sm font-semibold text-gray-800 mb-1">{rec.title}</div>
+                  <p className="text-sm text-gray-600">{rec.description}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
