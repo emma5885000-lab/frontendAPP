@@ -1,10 +1,36 @@
 import React, { useState, useEffect } from 'react';
-import { FaBrain, FaShieldAlt, FaHeart, FaWind, FaLightbulb, FaHandsWash, FaMask, FaHome, FaRunning, FaLeaf } from 'react-icons/fa';
+import { FaBrain, FaShieldAlt, FaHeart, FaWind, FaLightbulb, FaHandsWash, FaMask, FaHome, FaRunning, FaLeaf, FaLungs, FaAppleAlt, FaCalendarCheck, FaDumbbell, FaSpa } from 'react-icons/fa';
+import { GiLungs, GiMeditation } from 'react-icons/gi';
+import { MdAir, MdHealthAndSafety } from 'react-icons/md';
 import { AiOutlineLoading3Quarters, AiOutlineWarning } from 'react-icons/ai';
 import axios from 'axios';
 import { useAuthStore } from '../../../store/authStore';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api';
+
+const getRecommendationIcon = (iconEmoji: string) => {
+  const iconMap: { [key: string]: JSX.Element } = {
+    '🫁': <GiLungs size={20} className="text-sky-600" />,
+    '🏃': <FaRunning size={20} className="text-emerald-600" />,
+    '🍎': <FaAppleAlt size={20} className="text-red-500" />,
+    '📅': <FaCalendarCheck size={20} className="text-sky-600" />,
+    '💪': <FaDumbbell size={20} className="text-amber-600" />,
+    '🧘': <GiMeditation size={20} className="text-purple-600" />,
+    '🌬️': <MdAir size={20} className="text-sky-500" />,
+    '💨': <FaWind size={20} className="text-sky-500" />,
+    '🏠': <FaHome size={20} className="text-amber-600" />,
+    '😷': <FaMask size={20} className="text-gray-600" />,
+    '🧼': <FaHandsWash size={20} className="text-sky-500" />,
+    '🌿': <FaLeaf size={20} className="text-emerald-600" />,
+    '💡': <FaLightbulb size={20} className="text-amber-500" />,
+    '❤️': <FaHeart size={20} className="text-red-500" />,
+    '🛡️': <FaShieldAlt size={20} className="text-emerald-600" />,
+    '🧠': <FaBrain size={20} className="text-purple-600" />,
+    '🩺': <MdHealthAndSafety size={20} className="text-sky-600" />,
+    '🧘‍♀️': <FaSpa size={20} className="text-purple-500" />,
+  };
+  return iconMap[iconEmoji] || <FaLightbulb size={20} className="text-sky-600" />;
+};
 
 interface PredictionData {
   health_score: number;
@@ -182,10 +208,12 @@ function PatientPrediction() {
       <div className="space-y-3">
         {predictionData.recommendations.length > 0 ? (
           predictionData.recommendations.map((rec, index) => (
-            <div key={index} className="bg-white p-4 rounded-xl shadow-sm">
+            <div key={index} className="bg-white p-4 rounded-xl">
               <div className="flex items-start gap-3">
-                <div className="text-2xl">{rec.icon}</div>
-                <div>
+                <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-sky-50">
+                  {getRecommendationIcon(rec.icon)}
+                </div>
+                <div className="flex-1">
                   <div className="font-semibold text-gray-800 mb-1">{rec.title}</div>
                   <div className="text-sm text-gray-600">{rec.description}</div>
                 </div>
