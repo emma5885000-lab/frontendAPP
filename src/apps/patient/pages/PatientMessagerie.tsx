@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaPaperPlane, FaArrowLeft, FaPhone, FaVideo } from 'react-icons/fa';
+import { FaPaperPlane, FaArrowLeft } from 'react-icons/fa';
 
 interface Message {
   id: number;
@@ -72,45 +72,39 @@ function PatientMessagerie() {
     return (
       <div className="flex flex-col h-full">
         {/* Header conversation */}
-        <div className="bg-white border-b px-4 py-3 flex items-center gap-3">
+        <div className="px-4 py-3 flex items-center gap-3" style={{ background: 'linear-gradient(135deg, #38bdf8 0%, #0284c7 100%)' }}>
           <button 
             onClick={() => setSelectedConv(null)}
-            className="p-2 -ml-2 rounded-lg hover:bg-gray-100"
+            className="p-2 -ml-2 text-white"
           >
-            <FaArrowLeft size={20} />
+            <FaArrowLeft size={18} />
           </button>
-          <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-semibold" style={{ background: 'linear-gradient(135deg, #38bdf8 0%, #0284c7 100%)' }}>
+          <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center text-white font-semibold text-sm">
             {selectedConv.avatar}
           </div>
           <div className="flex-1">
-            <div className="font-semibold text-gray-800">{selectedConv.name}</div>
-            <div className="text-xs text-gray-500">{selectedConv.role}</div>
+            <div className="font-semibold text-white text-sm">{selectedConv.name}</div>
+            <div className="text-xs text-sky-100">{selectedConv.role}</div>
           </div>
-          <button className="p-2 rounded-lg hover:bg-gray-100">
-            <FaPhone size={20} className="text-gray-600" />
-          </button>
-          <button className="p-2 rounded-lg hover:bg-gray-100">
-            <FaVideo size={20} className="text-gray-600" />
-          </button>
         </div>
 
         {/* Messages */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50">
+        <div className="flex-1 overflow-y-auto p-4 space-y-2 bg-gray-50">
           {messages.map((msg) => (
             <div
               key={msg.id}
               className={`flex ${msg.sender === 'patient' ? 'justify-end' : 'justify-start'}`}
             >
               <div
-                className={`max-w-[80%] p-3 rounded-2xl ${
+                className={`max-w-[75%] px-3 py-2 rounded-2xl ${
                   msg.sender === 'patient'
-                    ? 'bg-sky-500 text-white rounded-br-md'
-                    : 'bg-white text-gray-800 rounded-bl-md shadow-sm'
+                    ? 'bg-sky-500 text-white rounded-br-sm'
+                    : 'bg-white text-gray-800 rounded-bl-sm'
                 }`}
               >
                 <p className="text-sm">{msg.text}</p>
                 <div className={`text-xs mt-1 ${
-                  msg.sender === 'patient' ? 'text-sky-100' : 'text-gray-400'
+                  msg.sender === 'patient' ? 'text-sky-200' : 'text-gray-400'
                 }`}>
                   {msg.time}
                 </div>
@@ -120,21 +114,21 @@ function PatientMessagerie() {
         </div>
 
         {/* Input */}
-        <div className="bg-white border-t p-3">
+        <div className="bg-white p-3">
           <div className="flex items-center gap-2">
             <input
               type="text"
               value={newMessage}
               onChange={(e) => setNewMessage(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
-              placeholder="Votre message..."
-              className="flex-1 px-4 py-3 bg-gray-100 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-sky-500"
+              placeholder="Message..."
+              className="flex-1 px-4 py-2.5 bg-gray-100 rounded-full text-sm focus:outline-none"
             />
             <button
               onClick={sendMessage}
-              className="w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center text-white active:bg-emerald-600"
+              className="w-10 h-10 bg-sky-500 rounded-full flex items-center justify-center text-white"
             >
-              <FaPaperPlane size={20} />
+              <FaPaperPlane size={16} />
             </button>
           </div>
         </div>
