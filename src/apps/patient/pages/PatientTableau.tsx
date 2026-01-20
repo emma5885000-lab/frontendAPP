@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FaHeartbeat, FaWind, FaTint, FaSun } from 'react-icons/fa';
+import { FaHeartbeat, FaWind, FaTint, FaSun, FaThermometerHalf } from 'react-icons/fa';
 import { AiOutlineLoading3Quarters, AiOutlineWarning } from 'react-icons/ai';
 import axios from 'axios';
 import { useAuthStore } from '../../../store/authStore';
@@ -11,6 +11,7 @@ interface DashboardStats {
   heart_rate: { value: number; unit: string; status: string; color: string };
   spo2: { value: number; unit: string; status: string; color: string };
   air_quality: { value: number; unit: string; status: string; color: string };
+  temperature: { value: number; unit: string; status: string; color: string };
 }
 
 interface DashboardData {
@@ -100,6 +101,16 @@ function PatientTableau() {
       color: 'emerald',
       bgColor: 'bg-emerald-100',
       iconColor: 'text-emerald-600'
+    },
+    { 
+      icon: FaThermometerHalf, 
+      label: 'Température', 
+      value: data.stats.temperature.value,
+      unit: data.stats.temperature.unit,
+      status: data.stats.temperature.status,
+      color: 'amber',
+      bgColor: 'bg-amber-100',
+      iconColor: 'text-amber-600'
     },
     { 
       icon: FaSun, 
