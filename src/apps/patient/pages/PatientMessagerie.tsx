@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FaPaperPlane, FaArrowLeft } from 'react-icons/fa';
+import { BOTTOM_NAV_HEIGHT } from '../components/MobileNavbar';
 
 interface Message {
   id: number;
@@ -52,6 +53,30 @@ function PatientMessagerie() {
   const [selectedConv, setSelectedConv] = useState<Conversation | null>(null);
   const [messages, setMessages] = useState<Message[]>(mockMessages);
   const [newMessage, setNewMessage] = useState('');
+  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  // Détecter l'ouverture du clavier (mobile)
+  useEffect(() => {
+    const handleResize = () => {
+      // Sur mobile, quand le clavier s'ouvre, la hauteur du viewport diminue
+      const isKeyboard = window.visualViewport 
+        ? window.visualViewport.height < window.innerHeight * 0.75
+        : false;
+      setIsKeyboardOpen(isKeyboard);
+    };
+
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', handleResize);
+      return () => window.visualViewport?.removeEventListener('resize', handleResize);
+    }
+  }, []);
+
+  // Scroll vers le bas quand un nouveau message arrive
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
 
   const sendMessage = () => {
     if (!newMessage.trim()) return;
@@ -69,10 +94,21 @@ function PatientMessagerie() {
 
   // Vue conversation
   if (selectedConv) {
+    // Calculer le padding bottom: hauteur nav + safe area (sauf si clavier ouvert)
+    const bottomPadding = isKeyboardOpen 
+      ? 0 
+      : `calc(${BOTTOM_NAV_HEIGHT}px + env(safe-area-inset-bottom))`;
+
     return (
-      <div className="flex flex-col h-full">
+      <div 
+        className="flex flex-col"
+        style={{ 
+          height: '100%',
+          marginBottom: isKeyboardOpen ? 0 : undefined
+        }}
+      >
         {/* Header conversation */}
-        <div className="px-4 py-3 flex items-center gap-3" style={{ background: 'linear-gradient(135deg, #38bdf8 0%, #0284c7 100%)' }}>
+        <div className="px-4 py-3 flex items-center gap-3 flex-shrink-0" style={{ background: 'linear-gradient(135deg, #38bdf8 0%, #0284c7 100%)' }}>
           <button 
             onClick={() => setSelectedConv(null)}
             className="p-2 -ml-2 text-white"
@@ -88,8 +124,8 @@ function PatientMessagerie() {
           </div>
         </div>
 
-        {/* Messages */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-2 bg-gray-50">
+        {/* Messages - zone scrollable */}
+        <div className="flex-1 overflow-y-auto p-4 space-y-2 bg-gray-50 min-h-0">
           {messages.map((msg) => (
             <div
               key={msg.id}
@@ -111,22 +147,28 @@ function PatientMessagerie() {
               </div>
             </div>
           ))}
+          <div ref={messagesEndRef} />
         </div>
 
-        {/* Input */}
-        <div className="bg-white p-3">
+        {/* Input - positionné au-dessus de la bottom nav */}
+        <div 
+          className="bg-white p-3 flex-shrink-0 border-t border-gray-100"
+          style={{ marginBottom: bottomPadding }}
+        >
           <div className="flex items-center gap-2">
             <input
+              ref={inputRef}
               type="text"
               value={newMessage}
               onChange={(e) => setNewMessage(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
               placeholder="Message..."
-              className="flex-1 px-4 py-2.5 bg-gray-100 rounded-full text-sm focus:outline-none"
+              className="flex-1 px-4 py-2.5 bg-gray-100 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-sky-500"
             />
             <button
               onClick={sendMessage}
-              className="w-10 h-10 bg-sky-500 rounded-full flex items-center justify-center text-white"
+              disabled={!newMessage.trim()}
+              className="w-10 h-10 bg-sky-500 rounded-full flex items-center justify-center text-white disabled:opacity-50 flex-shrink-0"
             >
               <FaPaperPlane size={16} />
             </button>

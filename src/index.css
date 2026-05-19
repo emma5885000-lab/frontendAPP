@@ -17,6 +17,16 @@ html, body {
   padding-bottom: env(safe-area-inset-bottom);
 }
 
+/* Constante pour la hauteur de la bottom nav (utilisée pour le padding du contenu) */
+:root {
+  --bottom-nav-height: 72px; /* hauteur nav (56px) + padding (16px) */
+}
+
+/* Padding pour le contenu au-dessus de la bottom nav */
+.pb-bottom-nav {
+  padding-bottom: calc(var(--bottom-nav-height) + env(safe-area-inset-bottom));
+}
+
 /* Animation de transition pour les pages */
 .page-transition {
   animation: fadeIn 0.2s ease-out;

@@ -17,10 +17,16 @@ const navItems: NavItem[] = [
   { path: '/patient/profil', icon: FaUser, label: 'Profil' },
 ];
 
+// Hauteur de la navbar exportée pour être utilisée ailleurs
+export const BOTTOM_NAV_HEIGHT = 72; // px (sans safe area)
+
 function MobileNavbar() {
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-2 py-2 safe-area-bottom z-50">
-      <div className="flex justify-around items-center">
+    <nav 
+      className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50"
+      style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+    >
+      <div className="flex justify-around items-center h-[72px] px-2">
         {navItems.map((item) => {
           const Icon = item.icon;
           return (
