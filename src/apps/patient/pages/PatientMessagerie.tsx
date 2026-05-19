@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FaPaperPlane, FaArrowLeft } from 'react-icons/fa';
-import { BOTTOM_NAV_HEIGHT } from '../components/MobileNavbar';
 
 interface Message {
   id: number;
@@ -53,25 +52,7 @@ function PatientMessagerie() {
   const [selectedConv, setSelectedConv] = useState<Conversation | null>(null);
   const [messages, setMessages] = useState<Message[]>(mockMessages);
   const [newMessage, setNewMessage] = useState('');
-  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  // Détecter l'ouverture du clavier (mobile)
-  useEffect(() => {
-    const handleResize = () => {
-      // Sur mobile, quand le clavier s'ouvre, la hauteur du viewport diminue
-      const isKeyboard = window.visualViewport 
-        ? window.visualViewport.height < window.innerHeight * 0.75
-        : false;
-      setIsKeyboardOpen(isKeyboard);
-    };
-
-    if (window.visualViewport) {
-      window.visualViewport.addEventListener('resize', handleResize);
-      return () => window.visualViewport?.removeEventListener('resize', handleResize);
-    }
-  }, []);
 
   // Scroll vers le bas quand un nouveau message arrive
   useEffect(() => {
@@ -94,19 +75,8 @@ function PatientMessagerie() {
 
   // Vue conversation
   if (selectedConv) {
-    // Calculer le padding bottom: hauteur nav + safe area (sauf si clavier ouvert)
-    const bottomPadding = isKeyboardOpen 
-      ? 0 
-      : `calc(${BOTTOM_NAV_HEIGHT}px + env(safe-area-inset-bottom))`;
-
     return (
-      <div 
-        className="flex flex-col"
-        style={{ 
-          height: '100%',
-          marginBottom: isKeyboardOpen ? 0 : undefined
-        }}
-      >
+      <div className="flex flex-col h-full">
         {/* Header conversation */}
         <div className="px-4 py-3 flex items-center gap-3 flex-shrink-0" style={{ background: 'linear-gradient(135deg, #38bdf8 0%, #0284c7 100%)' }}>
           <button 
@@ -150,14 +120,10 @@ function PatientMessagerie() {
           <div ref={messagesEndRef} />
         </div>
 
-        {/* Input - positionné au-dessus de la bottom nav */}
-        <div 
-          className="bg-white p-3 flex-shrink-0 border-t border-gray-100"
-          style={{ marginBottom: bottomPadding }}
-        >
+        {/* Input - positionné juste au-dessus de la bottom nav */}
+        <div className="bg-white p-3 flex-shrink-0 border-t border-gray-100">
           <div className="flex items-center gap-2">
             <input
-              ref={inputRef}
               type="text"
               value={newMessage}
               onChange={(e) => setNewMessage(e.target.value)}
